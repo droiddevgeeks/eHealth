@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_window"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_app"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_desk_translucent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/login_button_row"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/login_option"
+                android:textStyle="bold"
+                android:textColor="@color/select_text"
+                android:textSize="@dimen/login_page_text"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/arrow_downward"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnFBLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/fb_login_bg"
+            android:gravity="center"
+            android:minHeight="@dimen/login_button_row"
+            android:text="@string/login_option_fb"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/login_page_text"/>
+
+        <TextView
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/account_login_bg"
+            android:gravity="center"
+            android:minHeight="@dimen/login_button_row"
+            android:text="@string/login_option_account"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/login_page_text"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:minHeight="@dimen/login_button_row"
+            android:text="@string/OR"
+            android:textColor="@color/Or"
+            android:textSize="@dimen/login_page_text"/>
+
+        <TextView
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_button_bg"
+            android:gravity="center"
+            android:minHeight="@dimen/login_button_row"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/login_page_text"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

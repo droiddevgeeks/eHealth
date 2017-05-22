@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="login_option">Please Select</string>
+    <string name="login_option_fb">Connect Facebook</string>
+    <string name="login_option_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="OR">-----------------OR-----------------</string>
+    <string name="submit">Submit</string>
+    <string name="term"><u>Terms and Conditions</u></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="term_checkbox">term</string>
+    <string name="start">Start</string>
+    <string name="welcome_text">Welcome \n <b>Andesfit Health</b></string>
+    <string name="setYourName">Set Your Name</string>
+    <string name="first_name">First Name(required)</string>
+    <string name="last_name">Last Name</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+
+</resources>
