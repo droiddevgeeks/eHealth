@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">Andesfit Health</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
     <string name="login_option">Please Select</string>
     <string name="login_option_fb">Connect Facebook</string>
     <string name="login_option_account">Create Account</string>
     <string name="login">Login</string>
-    <string name="OR">-----------------OR-----------------</string>
+    <string name="OR">-----OR-----</string>
     <string name="submit">Submit</string>
     <string name="term"><u>Terms and Conditions</u></string>
     <string name="email">Email</string>
@@ -19,5 +23,19 @@
     <string name="last_name">Last Name</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
+    <string name="heigth">How tall are you?</string>
+   <string name="heigth_hint">90.00cm</string>
+    <string name="bday">Set your birthday</string>
+    <string name="dob">05/21/2017</string>
+    <string name="select_gender">Please select your gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="all_done">All Done</string>
+    <string name="take_pic">Take A Picture</string>
+    <string name="finish">Finish</string>
+    <string name="curr_wt">What is your current weight?</string>
+    <string name="wt_hint">0.0kg</string>
+    <string name="curr_waist">What is your current waist size?</string>
+    <string name="waist_hint">0.0\"</string>
 
 </resources>

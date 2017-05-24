@@ -7,9 +7,11 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/imgLogo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@null"
         android:src="@drawable/logo_app"/>
 
     <LinearLayout
@@ -52,7 +54,6 @@
             android:id="@+id/btnFBLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@drawable/fb_login_bg"
             android:gravity="center"
             android:minHeight="@dimen/login_button_row"
@@ -78,16 +79,14 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:gravity="center"
-            android:minHeight="@dimen/login_button_row"
             android:text="@string/OR"
             android:textColor="@color/Or"
-            android:textSize="@dimen/login_page_text"/>
+            android:textSize="@dimen/profile_question"/>
 
         <TextView
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/login_button_bg"
             android:gravity="center"

@@ -8,19 +8,19 @@
 
 
     <ImageView
-        android:id="@+id/profileNameImg"
+        android:id="@+id/profileNameKG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:src="@drawable/logo_profile_setting_name"/>
+        android:src="@drawable/logo_profile_setting_weight_and_waist_size"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/profileNameImg"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/profileNameKG"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_desk_opaque"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -30,24 +30,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/setYourName"
-            android:textSize="@dimen/login_page_text"/>
+            android:text="@string/curr_wt"
+            android:textSize="@dimen/profile_question"/>
+
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/first_name"
+            android:hint="@string/wt_hint"
             android:textColorHint="@color/hint"
-            android:textSize="@dimen/login_page_text"/>
+            android:textSize="@dimen/profile_question"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/curr_waist"
+            android:textSize="@dimen/profile_question"/>
+
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/last_name"
+            android:hint="@string/waist_hint"
             android:textColorHint="@color/hint"
-            android:textSize="@dimen/login_page_text"/>
+            android:textSize="@dimen/profile_question"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"

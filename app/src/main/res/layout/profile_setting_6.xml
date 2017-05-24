@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/camera_bg"
+        android:layout_above="@+id/txtFinish">
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@null"
+            android:src="@drawable/logo_app_text_only"/>
+
+        <ImageView
+            android:id="@+id/cameraImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgLogo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circular_camera_bg"
+            android:src="@drawable/logo_profile_setting_take_avator"/>
+
+        <TextView
+            android:id="@+id/all_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cameraImg"
+            android:layout_centerHorizontal="true"
+            android:text="@string/all_done"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/fb_btn"
+            android:textSize="@dimen/login_page_text"/>
+
+        <TextView
+            android:id="@+id/takePIc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/all_done"
+            android:layout_centerHorizontal="true"
+            android:text="@string/take_pic"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/fb_btn"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/login_button_bg"
+        android:gravity="center"
+        android:minHeight="@dimen/login_button_row"
+        android:text="@string/finish"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/login_page_text"/>
+
+</RelativeLayout>
