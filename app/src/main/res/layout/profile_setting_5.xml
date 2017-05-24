@@ -6,6 +6,7 @@
     android:background="@color/fb_btn"
     android:orientation="vertical">
 
+    <include layout="@layout/profile_toolbar"/>
 
     <ImageView
         android:id="@+id/profileNameKG"
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:layout_below="@+id/rltoolbar"
         android:src="@drawable/logo_profile_setting_weight_and_waist_size"/>
 
     <LinearLayout
@@ -29,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/curr_wt"
             android:textSize="@dimen/profile_question"/>
 
@@ -39,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/wt_hint"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hint"
             android:textSize="@dimen/profile_question"/>
 
@@ -55,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/waist_hint"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hint"
             android:textSize="@dimen/profile_question"/>
 
@@ -68,6 +72,7 @@
             android:weightSum="2">
 
             <FrameLayout
+                android:id="@+id/framePrevious"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -92,6 +97,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/frameNext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

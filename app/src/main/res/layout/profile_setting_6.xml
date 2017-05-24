@@ -10,24 +10,25 @@
         android:background="@color/camera_bg"
         android:layout_above="@+id/txtFinish">
 
+        <include layout="@layout/profile_toolbar"/>
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:contentDescription="@null"
+            android:layout_below="@+id/rltoolbar"
             android:src="@drawable/logo_app_text_only"/>
 
-        <ImageView
+        <com.andesfit.android.util.RoundedImageView
             android:id="@+id/cameraImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imgLogo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/circular_camera_bg"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
             android:src="@drawable/logo_profile_setting_take_avator"/>
 
         <TextView
@@ -60,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:background="@drawable/login_button_bg"
         android:gravity="center"
         android:minHeight="@dimen/login_button_row"

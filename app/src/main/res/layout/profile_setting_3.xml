@@ -6,13 +6,14 @@
     android:background="@color/fb_btn"
     android:orientation="vertical">
 
-
+    <include layout="@layout/profile_toolbar"/>
     <ImageView
         android:id="@+id/profileNameImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:layout_below="@+id/rltoolbar"
         android:src="@drawable/logo_profile_setting_height"/>
 
     <LinearLayout
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="@string/heigth_hint"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/hint"
             android:textSize="@dimen/login_page_text"/>
 
@@ -51,6 +53,7 @@
             android:weightSum="2">
 
             <FrameLayout
+                android:id="@+id/framePrevious"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,6 +78,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/frameNext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

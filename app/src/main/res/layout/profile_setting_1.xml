@@ -6,11 +6,13 @@
     android:background="@drawable/bg_window"
     android:orientation="vertical">
 
+    <include layout="@layout/profile_toolbar"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:contentDescription="@null"
+        android:layout_below="@+id/rltoolbar"
         android:src="@drawable/logo_app"/>
 
     <TextView
@@ -38,7 +40,7 @@
 
 
         <TextView
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

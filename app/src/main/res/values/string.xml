@@ -35,7 +35,11 @@
     <string name="finish">Finish</string>
     <string name="curr_wt">What is your current weight?</string>
     <string name="wt_hint">0.0kg</string>
-    <string name="curr_waist">What is your current waist size?</string>
+    <string name="curr_waist">What is your waist size?</string>
     <string name="waist_hint">0.0\"</string>
+
+    <string name="profile_setting">Profile Setting</string>
+    <string name="profile_skip">Skip</string>
+    <string name="create_acc">Create Account</string>
 
 </resources>

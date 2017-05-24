@@ -6,10 +6,12 @@
     android:background="@color/login"
     android:orientation="vertical">
 
+    <include layout="@layout/profile_toolbar"/>
     <RelativeLayout
         android:id="@+id/profileNameImg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rltoolbar"
         android:layout_marginTop="10dp">
 
         <TextView
@@ -102,7 +104,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/bday"
             android:textSize="@dimen/login_page_text"/>
 
@@ -111,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/dob"
+            android:inputType="number"
             android:textColorHint="@color/hint"
             android:textSize="@dimen/login_page_text"/>
 
@@ -123,6 +126,7 @@
             android:weightSum="2">
 
             <FrameLayout
+                android:id="@+id/framePrevious"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -147,6 +151,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/frameNext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
