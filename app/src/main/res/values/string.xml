@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Andesfit Health</string>
+    <string name="app_name"> ehealth</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
@@ -17,7 +17,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="term_checkbox">term</string>
     <string name="start">Start</string>
-    <string name="welcome_text">Welcome \n <b>Andesfit Health</b></string>
+    <string name="welcome_text">Welcome \n <b>ehealth</b></string>
     <string name="setYourName">Set Your Name</string>
     <string name="first_name">First Name(required)</string>
     <string name="last_name">Last Name</string>

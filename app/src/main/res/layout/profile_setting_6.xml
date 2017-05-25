@@ -7,19 +7,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/camera_bg"
-        android:layout_above="@+id/txtFinish">
+        android:layout_above="@+id/txtFinish"
+        android:background="@color/camera_bg">
 
         <include layout="@layout/profile_toolbar"/>
         <ImageView
             android:id="@+id/imgLogo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:layout_below="@+id/rltoolbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:contentDescription="@null"
-            android:layout_below="@+id/rltoolbar"
-            android:src="@drawable/logo_app_text_only"/>
+            android:src="@drawable/e_health_icon" />
 
         <com.andesfit.android.util.RoundedImageView
             android:id="@+id/cameraImg"
@@ -37,8 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/cameraImg"
             android:layout_centerHorizontal="true"
-            android:text="@string/all_done"
             android:layout_marginTop="10dp"
+            android:text="@string/all_done"
             android:textColor="@color/fb_btn"
             android:textSize="@dimen/login_page_text"/>
 
@@ -48,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/all_done"
             android:layout_centerHorizontal="true"
-            android:text="@string/take_pic"
             android:layout_marginTop="5dp"
+            android:text="@string/take_pic"
             android:textColor="@color/fb_btn"
             android:textSize="@dimen/text_large"
             android:textStyle="bold"/>
