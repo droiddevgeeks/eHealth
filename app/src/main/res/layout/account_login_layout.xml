@@ -35,7 +35,6 @@
             android:hint="@string/mobile"
             android:textColorHint="@color/hint"
             android:inputType="number"
-            android:maxLength="10"
             android:textSize="@dimen/profile_question"/>
 
         <EditText
@@ -47,40 +46,11 @@
             android:inputType="textPassword"
             android:textSize="@dimen/profile_question"/>
 
-        <EditText
-            android:id="@+id/edtCnfPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            android:textColorHint="@color/hint"
-            android:textSize="@dimen/profile_question"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:contentDescription="@string/term_checkbox"
-                android:src="@drawable/tickbox_selected"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/term"
-                android:textSize="@dimen/term"/>
-
-        </LinearLayout>
 
 
         <TextView
-            android:id="@+id/btnSubmit"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
@@ -88,7 +58,7 @@
             android:background="@drawable/login_button_bg"
             android:gravity="center"
             android:minHeight="@dimen/login_button_row"
-            android:text="@string/submit"
+            android:text="@string/login"
             android:textColor="@android:color/white"
             android:textSize="@dimen/login_page_text"/>
 

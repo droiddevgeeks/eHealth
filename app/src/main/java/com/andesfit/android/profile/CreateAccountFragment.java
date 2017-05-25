@@ -6,11 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andesfit.android.R;
 import com.andesfit.android.profile.ProfileSettingFragment;
+import com.andesfit.android.util.HealthSharedPreference;
 
 /**
  * Created by Vampire on 2017-05-24.
@@ -18,6 +21,8 @@ import com.andesfit.android.profile.ProfileSettingFragment;
 
 public class CreateAccountFragment extends Fragment  implements View.OnClickListener
 {
+
+    private EditText mobile, password,cnfPassword;
 
     @Nullable
     @Override
@@ -38,8 +43,15 @@ public class CreateAccountFragment extends Fragment  implements View.OnClickList
         TextView title = (TextView)getView().findViewById(R.id.profileSetting);
         title.setText(getContext().getResources().getString(R.string.create_acc));
 
+         mobile = (EditText)getView().findViewById(R.id.edtMobile);
+         password = (EditText)getView().findViewById(R.id.edtPassword);
+         cnfPassword = (EditText)getView().findViewById(R.id.edtCnfPassword);
+
         ImageView backArrow = (ImageView)getView().findViewById(R.id.backArrow);
         backArrow.setVisibility(View.VISIBLE);
+        backArrow.setOnClickListener(this);
+
+
         TextView submit = (TextView)getView().findViewById(R.id.btnSubmit);
         submit.setOnClickListener(this);
     }
@@ -51,9 +63,38 @@ public class CreateAccountFragment extends Fragment  implements View.OnClickList
         switch (v.getId())
         {
             case R.id.btnSubmit:
-                createProfileFragment();
+                if(checkInputField())
+                {
+                    createProfileFragment();
+                }
+                break;
+            case R.id.backArrow:
+                getFragmentManager().popBackStack();
                 break;
         }
+    }
+
+    boolean checkInputField()
+    {
+        if(mobile.getText().length()<10 || cnfPassword.getText().length() == 0 || password.getText().length() ==0)
+        {
+            Toast.makeText(getContext() , "Please enter correct value", Toast.LENGTH_SHORT).show();
+            return  false;
+        }
+        if(!password.getText().toString().equalsIgnoreCase(cnfPassword.getText().toString()))
+        {
+            Toast.makeText(getContext() , "Please enter same password", Toast.LENGTH_SHORT).show();
+            return  false;
+        }
+        saveUserData();
+        return  true;
+    }
+
+    private void saveUserData()
+    {
+        HealthSharedPreference preference = HealthSharedPreference.getInstance(getContext());
+        preference.setMobileNumber(mobile.getText().toString());
+        preference.setPassword(password.getText().toString());
     }
 
     private void createProfileFragment()

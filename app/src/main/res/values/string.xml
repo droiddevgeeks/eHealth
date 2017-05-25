@@ -12,7 +12,7 @@
     <string name="OR">-----OR-----</string>
     <string name="submit">Submit</string>
     <string name="term"><u>Terms and Conditions</u></string>
-    <string name="email">Email</string>
+    <string name="mobile">Mobile</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="term_checkbox">term</string>

@@ -35,6 +35,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener
     {
         TextView createAccount = (TextView)getView().findViewById(R.id.btnCreateAccount);
         createAccount.setOnClickListener(this);
+
+        TextView btnLogin = (TextView)getView().findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(this);
+
     }
 
 
@@ -46,7 +50,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener
             case R.id.btnCreateAccount:
                 createHealthAccount();
                 break;
+            case R.id.btnLogin:
+                login();
         }
+    }
+
+    private void login()
+    {
+        getFragmentManager().beginTransaction().add(R.id.container, new AccountLoginFragment()).addToBackStack(null).commit();
     }
 
     private void createHealthAccount()
