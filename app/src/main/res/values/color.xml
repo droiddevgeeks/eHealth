@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorLightGray">#dfe4f4</color>
     <color name="colorAccent">#8056667C</color>
     <color name="fb_btn">#697ACE</color>
     <color name="account_btn">#F2931F</color>
@@ -12,4 +13,5 @@
     <color name="hint">#D3D3D3</color>
     <color name="previous">#F0616A</color>
     <color name="camera_bg">#DEE4F2</color>
+
 </resources>

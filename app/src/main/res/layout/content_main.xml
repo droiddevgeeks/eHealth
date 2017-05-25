@@ -1,19 +1,561 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.andesfit.android.MainActivity"
-                tools:showIn="@layout/app_bar_main">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.andesfit.android.MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="230dp"
+                android:layout_weight=".8"
+                android:background="@mipmap/myhealth_bg"
+                >
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@mipmap/logo_app_text_only" />
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/circle_shape" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/profile_circle_shape" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|bottom"
+                        android:src="@mipmap/myhealth_btn_profile_avator" />
+
+
+                </FrameLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Punit Pawan"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="230dp"
+                android:layout_weight=".2"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".33"
+                    android:src="@mipmap/myhealth_btn_goal_pressed" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".33"
+                    android:src="@mipmap/myhealth_btn_history_default" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".33"
+                    android:src="@mipmap/myhealth_btn_report_default" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorLightGray"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="0.33"
+                    android:text="Current"
+                    android:textColor="@android:color/black" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="0.33"
+                    android:text="Goal"
+                    android:textColor="@android:color/black" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="0.34"
+                    android:text="Goal Date"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:src="@mipmap/ruler_horizontal_jigsaw_opaque_white_upward" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:visibility="visible">
+            <ImageView
+                android:id="@+id/weight_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/weight"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/goal_ic_type_weighing" />
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_toRightOf="@id/weight_iv"
+                android:layout_marginTop="8dp"
+                android:text="Weight"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+
+            <View
+                android:id="@+id/dot_view"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/weight"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="38dp"
+                android:layout_toRightOf="@+id/weight_iv"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/weight_iv"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/bmi_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/dot_vertical"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:text="BMI"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/dot_view_1"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/bmi_tv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <View
+                android:id="@+id/dot_vertical"
+                android:layout_width="0.7dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@id/dot_view_1"
+                android:background="@android:color/black" />
+
+
+            <ImageView
+                android:id="@+id/arrow_right_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/arrow_rightward_pressed" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/sys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="58dp"
+                android:layout_marginTop="8dp"
+                android:text="SYS"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/sys_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sys"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/device_ic_blood_pressure_meter_gray" />
+
+            <View
+                android:id="@+id/sysdot_view"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/sys"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="38dp"
+                android:layout_toRightOf="@+id/sys_iv"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/sys_iv"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/dia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/diavertical"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:text="DIA"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/sysdot_view_1"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/dia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <View
+                android:id="@+id/diavertical"
+                android:layout_width="0.7dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/sysdot_view_1"
+                android:background="@android:color/black" />
+
+
+            <ImageView
+                android:id="@+id/sysarrow_right_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/arrow_rightward_pressed" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/spo2_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp02"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/device_ic_oximeter_gray" />
+            <TextView
+                android:id="@+id/sp02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_toRightOf="@id/spo2_iv"
+                android:layout_marginTop="8dp"
+                android:text="%SpO2"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <View
+                android:id="@+id/spo2dot_view"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/sp02"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="38dp"
+                android:layout_toRightOf="@+id/spo2_iv"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/spo2_iv"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/pulse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/spotvertical"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:text="Pulse"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/spo2dot_view_1"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/pulse"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <View
+                android:id="@+id/spotvertical"
+                android:layout_width="0.7dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/spo2dot_view_1"
+                android:background="@android:color/black" />
+
+
+            <ImageView
+                android:id="@+id/spo2arrow_right_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/arrow_rightward_pressed" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+
+            <TextView
+                android:id="@+id/glu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="58dp"
+                android:layout_marginTop="8dp"
+                android:text="GLU"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/glu_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/glu"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/device_ic_blood_glucose_meter_gray" />
+
+            <View
+                android:id="@+id/gludot_view"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/glu"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="38dp"
+                android:layout_toRightOf="@+id/glu_iv"
+                android:background="@android:color/darker_gray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/glu_iv"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <TextView
+                android:id="@+id/chol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_toRightOf="@+id/gludot_vertical"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:text="CHOL"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/gludot_view_1"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/chol"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="34dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <View
+                android:id="@+id/gludot_vertical"
+                android:layout_width="0.7dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@id/gludot_view_1"
+                android:background="@android:color/black" />
+
+
+            <ImageView
+                android:id="@+id/gluarrow_right_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/arrow_rightward_pressed" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="58dp"
+                android:layout_marginTop="8dp"
+                android:text="Temperature"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/temp_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temperature"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/device_ic_thermometer_gray" />
+
+            <View
+                android:id="@+id/temp_view"
+                android:layout_width="6dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/temperature"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="38dp"
+                android:layout_toRightOf="@+id/temp_iv"
+                android:background="@android:color/darker_gray" />
+
+
+            <ImageView
+                android:id="@+id/temperature_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/arrow_rightward_pressed" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

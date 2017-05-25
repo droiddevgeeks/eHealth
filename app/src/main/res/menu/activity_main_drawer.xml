@@ -1,35 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
-    </group>
-
-    <item android:title="Communicate">
+    <item android:title="My Info">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_my_health"
+                android:icon="@mipmap/slidingmenu_navigation_ic_my_health"
+                android:title="My Health" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:id="@+id/nav_my_goal"
+                android:icon="@mipmap/slidingmenu_navigation_ic_my_goal"
+                android:title="My Goal" />
+            <item
+                android:id="@+id/nav_history"
+                android:icon="@mipmap/slidingmenu_navigation_ic_my_history"
+                android:title="My History" />
+            <item
+                android:id="@+id/nav_report"
+                android:icon="@mipmap/slidingmenu_navigation_ic_my_report"
+                android:title="My Report" />
+        </menu>
+    </item>
+
+    <item android:title="Measurement">
+        <menu>
+            <item
+                android:id="@+id/nav_weight"
+                android:icon="@mipmap/slidingmenu_navigation_ic_device_weighing_scale"
+                android:title="Weight" />
+            <item
+                android:id="@+id/nav_bp"
+                android:icon="@mipmap/slidingmenu_navigation_ic_device_blood_pressure_meter"
+                android:title="Blood Pressure" />
+            <item
+                android:id="@+id/nav_oximetry"
+                android:icon="@mipmap/slidingmenu_navigation_ic_device_oximeter"
+                android:title="Oxymetry" />
+            <item
+                android:id="@+id/nav_gnc"
+                android:icon="@mipmap/slidingmenu_navigation_ic_device_blood_glucose_meter"
+                android:title="Glucose &amp; Cholestrol" />
+            <item
+                android:id="@+id/nav_temp"
+                android:icon="@mipmap/slidingmenu_navigation_ic_device_thermometer"
+                android:title="Temperature" />
+        </menu>
+    </item>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_user_manage"
+                android:icon="@mipmap/slidingmenu_navigation_ic_user_management"
+                android:title="User Management" />
+        </menu>
+    </item>
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_info"
+                android:icon="@mipmap/slidingmenu_navigation_ic_user_management"
+                android:title="Info and Support" />
         </menu>
     </item>
 

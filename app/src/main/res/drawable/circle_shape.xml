@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:drawable="@drawable/profile_circle_shape"
+        />
+    <item android:drawable="@mipmap/user_management_profile_avator_placeholder_female_small"/>
+
+</layer-list>
