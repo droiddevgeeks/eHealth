@@ -42,4 +42,32 @@
     <string name="profile_skip">Skip</string>
     <string name="create_acc">Create Account</string>
 
+    <!--body stats-->
+    <string name="BMI">BMI</string>
+    <string name="fat">FAT %</string>
+    <string name="bp">Blood Pressure</string>
+    <string name="bg">Blood Glucose</string>
+    <string name="muscles">Muscles</string>
+    <string name="range">Range</string>
+    
+    <!--bmi range-->
+    <string name="bmi1"><b>&lt;18.5</b> = Underweight</string>
+    <string name="bmi2"><b>18.5-25</b> = Healthy</string>
+    <string name="bmi3"><b>25-29.5</b> = Overweight</string>
+    <string name="bmi4"><b>&gt;30</b> = Obese</string>
+
+    <!--fats-->
+    <string name="rating">Rating</string>
+    <string name="athletic">Athletic</string>
+    <string name="good">Good</string>
+    <string name="acceptable">Acceptable</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese">Obese</string>
+    
+    <!--blood pressure-->
+    <string name="systolic">Systolic</string>
+    <string name="diastolic">Diastolic</string>
+
+
+
 </resources>

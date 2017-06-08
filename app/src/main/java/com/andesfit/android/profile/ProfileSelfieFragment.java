@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.andesfit.android.MainActivity;
 import com.andesfit.android.R;
+import com.andesfit.android.body_stats.BodyStatsFragment;
 
 /**
  * Created by Vampire on 2017-05-25.
@@ -56,8 +57,9 @@ public class ProfileSelfieFragment extends Fragment  implements View.OnClickList
 
     private void profileCompleted()
     {
-        Intent intent = new Intent(getActivity(), MainActivity.class);
+        /*Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
-        getActivity().finish();
+        getActivity().finish();*/
+        getFragmentManager().beginTransaction().add(R.id.container, new BodyStatsFragment()).addToBackStack(null).commit();
     }
 }

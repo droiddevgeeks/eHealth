@@ -2,5 +2,5 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/listview_background_shape">
-    <solid android:color="@color/account_btn" />
+    <solid android:color="@color/hint" />
 </shape>
