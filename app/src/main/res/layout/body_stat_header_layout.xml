@@ -17,27 +17,23 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="arpit"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
             android:textSize="@dimen/skip"
             android:textStyle="bold"/>
 
-        <TextView
+        <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="KG"
             android:gravity="center_horizontal"
-            android:textSize="@dimen/skip"
-            android:textStyle="bold"/>
+            android:src="@drawable/goal_ic_type_weighing"/>
 
-        <TextView
+        <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Height"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/skip"
-            android:textStyle="bold"/>
+            android:src="@drawable/logo_profile_setting_height"/>
 
         <TextView
             android:layout_width="0dp"

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.andesfit.android.body_stats.BodyStatsFragment;
 import com.andesfit.android.util.HealthSharedPreference;
 
 public class MainActivity extends AppCompatActivity
@@ -94,12 +95,14 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_info) {
-
+        if (id == R.id.nav_weight)
+        {
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new BodyStatsFragment()).addToBackStack(null).commit();
         }
         // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {

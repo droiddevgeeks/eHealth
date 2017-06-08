@@ -31,10 +31,10 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="100dp"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/logo_app"/>
+                android:src="@drawable/logo_profile_setting_diabete"/>
         </LinearLayout>
 
     </LinearLayout>

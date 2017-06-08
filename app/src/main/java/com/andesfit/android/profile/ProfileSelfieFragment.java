@@ -57,9 +57,8 @@ public class ProfileSelfieFragment extends Fragment  implements View.OnClickList
 
     private void profileCompleted()
     {
-        /*Intent intent = new Intent(getActivity(), MainActivity.class);
+        Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
-        getActivity().finish();*/
-        getFragmentManager().beginTransaction().add(R.id.container, new BodyStatsFragment()).addToBackStack(null).commit();
+        getActivity().finish();
     }
 }

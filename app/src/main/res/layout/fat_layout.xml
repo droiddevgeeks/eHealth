@@ -34,7 +34,7 @@
                 android:layout_height="80dp"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/logo_app"/>
+                android:src="@drawable/goal_ic_type_weighing"/>
         </LinearLayout>
 
         <LinearLayout

@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/body_stat_header_layout"/>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="15dp"/>
 
-        <include layout="@layout/body_stat_header_layout"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-        <include layout="@layout/bmi_layout"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-        <include layout="@layout/fat_layout"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-        <include layout="@layout/blood_pressure_layout"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="15dp"/>
-        <include layout="@layout/blood_glucose_layout"/>
+    <include layout="@layout/bmi_layout"/>
 
-    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
 
-</ScrollView>
+    <include layout="@layout/fat_layout"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+    <include layout="@layout/blood_pressure_layout"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+    <include layout="@layout/blood_glucose_layout"/>
+
+</LinearLayout>
