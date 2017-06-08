@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.andesfit.android.fragments.HomeFragment;
 
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.nav_weight)
+        {
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new BodyStatsFragment()).addToBackStack(null).commit();
         if (id == R.id.nav_my_health) {
             getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).commit();
         }

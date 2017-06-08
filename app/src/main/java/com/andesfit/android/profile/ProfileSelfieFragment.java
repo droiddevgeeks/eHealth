@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.andesfit.android.MainActivity;
 import com.andesfit.android.R;
+import com.andesfit.android.body_stats.BodyStatsFragment;
 
 /**
  * Created by Vampire on 2017-05-25.
