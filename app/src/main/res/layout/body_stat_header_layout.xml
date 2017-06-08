@@ -3,11 +3,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/yolo"
+        android:scaleType="fitXY"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:weightSum="4">
@@ -33,16 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@drawable/logo_profile_setting_height"/>
+            android:src="@mipmap/slidingmenu_navigation_ic_device_measuring_tape"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Height"
-            android:textSize="@dimen/skip"
-            android:textStyle="bold"
-            android:visibility="invisible"/>
     </LinearLayout>
 
     <LinearLayout
@@ -84,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1,Dec 2015"
+            android:text="1,Dec2015"
             android:textSize="@dimen/skip"/>
     </LinearLayout>
 

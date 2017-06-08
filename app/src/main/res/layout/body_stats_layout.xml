@@ -10,25 +10,30 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
-
     <include layout="@layout/bmi_layout"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
-
     <include layout="@layout/fat_layout"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
-
     <include layout="@layout/blood_pressure_layout"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="15dp"/>
-
     <include layout="@layout/blood_glucose_layout"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+    <include layout="@layout/muscle_layout"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+    <include layout="@layout/pulse_layout"/>
 </LinearLayout>

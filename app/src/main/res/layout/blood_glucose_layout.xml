@@ -34,7 +34,7 @@
                 android:layout_height="100dp"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/logo_profile_setting_diabete"/>
+                android:src="@drawable/glucose"/>
         </LinearLayout>
 
     </LinearLayout>

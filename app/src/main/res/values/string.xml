@@ -47,7 +47,11 @@
     <string name="fat">FAT %</string>
     <string name="bp">Blood Pressure</string>
     <string name="bg">Blood Glucose</string>
-    <string name="muscles">Muscles</string>
+    <string name="muscles">Muscles %</string>
+    <string name="hydrat">Hydration</string>
+    <string name="pulse_rate">Pulse Rate</string>
+    <string name="oxygen">Oxygen Saturation %</string>
+    <string name="temp">Temperature</string>
     <string name="range">Range</string>
     
     <!--bmi range-->

@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:scaleType="fitXY"
-            android:src="@drawable/device_ic_weighing_scale_gray"
+            android:src="@drawable/bmi"
             android:contentDescription="@null"/>
         </LinearLayout>
 
