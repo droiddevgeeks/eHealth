@@ -23,8 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="230dp"
                 android:layout_weight=".8"
-                android:background="@mipmap/myhealth_bg"
-                >
+                android:background="@mipmap/myhealth_bg">
 
                 <ImageView
                     android:layout_width="80dp"
@@ -63,6 +62,7 @@
 
 
                 <TextView
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -115,19 +115,43 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
 
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.33"
-                    android:text="Current"
-                    android:textColor="@android:color/black" />
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_horizontal"
+                        android:text="Current"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/currentWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:text="-"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_gravity="bottom"-->
+                <!--android:textSize="18sp"-->
+                <!--android:text="kg"-->
+                <!--android:textColor="@android:color/darker_gray" />-->
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
@@ -137,9 +161,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="16dp"
                     android:layout_weight="0.33"
+                    android:gravity="center_horizontal"
                     android:text="Goal"
                     android:textColor="@android:color/black" />
 
@@ -152,9 +176,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="16dp"
                     android:layout_weight="0.34"
+                    android:gravity="center_horizontal"
                     android:text="Goal Date"
                     android:textColor="@android:color/black" />
 
@@ -172,6 +196,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:visibility="visible">
+
             <ImageView
                 android:id="@+id/weight_iv"
                 android:layout_width="wrap_content"
@@ -193,16 +218,18 @@
                 android:textStyle="bold" />
 
 
-
-            <View
-                android:id="@+id/dot_view"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@id/weight"
+            <TextView
+                android:id="@+id/weightTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/weight_iv"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="38dp"
+                android:layout_toLeftOf="@+id/dot_vertical"
                 android:layout_toRightOf="@+id/weight_iv"
-                android:background="@android:color/darker_gray" />
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -224,23 +251,24 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/dot_view_1"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@id/bmi_tv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="34dp"
-                android:background="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/bmiTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/weight_iv"
+                android:layout_marginBottom="8dp"
+                android:layout_toRightOf="@+id/dot_vertical"
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
 
             <View
                 android:id="@+id/dot_vertical"
                 android:layout_width="0.7dp"
                 android:layout_height="70dp"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="8dp"
-                android:layout_toLeftOf="@id/dot_view_1"
                 android:background="@android:color/black" />
 
 
@@ -280,15 +308,17 @@
                 android:layout_marginLeft="8dp"
                 android:src="@mipmap/device_ic_blood_pressure_meter_gray" />
 
-            <View
-                android:id="@+id/sysdot_view"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@id/sys"
+            <TextView
+                android:id="@+id/sysTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/sys_iv"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="38dp"
                 android:layout_toRightOf="@+id/sys_iv"
-                android:background="@android:color/darker_gray" />
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -310,23 +340,25 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/sysdot_view_1"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@+id/dia"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="34dp"
-                android:background="@android:color/darker_gray" />
 
+            <TextView
+                android:id="@+id/diaTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/sys_iv"
+                android:layout_marginBottom="8dp"
+                android:layout_toRightOf="@+id/diavertical"
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
             <View
                 android:id="@+id/diavertical"
                 android:layout_width="0.7dp"
                 android:layout_height="70dp"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="8dp"
-                android:layout_toLeftOf="@+id/sysdot_view_1"
+
                 android:background="@android:color/black" />
 
 
@@ -351,6 +383,7 @@
                 android:layout_below="@+id/sp02"
                 android:layout_marginLeft="8dp"
                 android:src="@mipmap/device_ic_oximeter_gray" />
+
             <TextView
                 android:id="@+id/sp02"
                 android:layout_width="wrap_content"
@@ -364,15 +397,17 @@
                 android:textStyle="bold" />
 
 
-            <View
-                android:id="@+id/spo2dot_view"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@id/sp02"
+            <TextView
+                android:id="@+id/spo2Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spo2_iv"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="38dp"
                 android:layout_toRightOf="@+id/spo2_iv"
-                android:background="@android:color/darker_gray" />
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -394,23 +429,26 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/spo2dot_view_1"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@+id/pulse"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="34dp"
-                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/pulseTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spo2_iv"
+                android:layout_marginBottom="8dp"
+                android:layout_toRightOf="@+id/spotvertical"
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
 
             <View
                 android:id="@+id/spotvertical"
                 android:layout_width="0.7dp"
                 android:layout_height="70dp"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="8dp"
-                android:layout_toLeftOf="@+id/spo2dot_view_1"
+
                 android:background="@android:color/black" />
 
 
@@ -449,15 +487,18 @@
                 android:layout_marginLeft="8dp"
                 android:src="@mipmap/device_ic_blood_glucose_meter_gray" />
 
-            <View
-                android:id="@+id/gludot_view"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@id/glu"
+
+            <TextView
+                android:id="@+id/gluTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/glu_iv"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="38dp"
                 android:layout_toRightOf="@+id/glu_iv"
-                android:background="@android:color/darker_gray" />
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -479,23 +520,25 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/gludot_view_1"
-                android:layout_width="6dp"
-                android:layout_height="1dp"
-                android:layout_below="@+id/chol"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="34dp"
-                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/cholTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/glu_iv"
+                android:layout_marginBottom="8dp"
+                android:layout_toRightOf="@+id/gludot_vertical"
+                android:text="-"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="28sp" />
 
 
             <View
                 android:id="@+id/gludot_vertical"
                 android:layout_width="0.7dp"
                 android:layout_height="70dp"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginRight="8dp"
-                android:layout_toLeftOf="@id/gludot_view_1"
                 android:background="@android:color/black" />
 
 

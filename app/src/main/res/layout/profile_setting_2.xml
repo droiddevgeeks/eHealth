@@ -12,9 +12,9 @@
         android:id="@+id/profileNameImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rltoolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/rltoolbar"
         android:src="@drawable/logo_profile_setting_name"/>
 
     <LinearLayout
@@ -36,6 +36,7 @@
             android:textSize="@dimen/login_page_text"/>
 
         <EditText
+            android:id="@+id/fName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -44,6 +45,7 @@
             android:textSize="@dimen/login_page_text"/>
 
         <EditText
+            android:id="@+id/lName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -64,22 +66,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:minHeight="@dimen/login_button_row"
-                android:background="@drawable/previous_bg">
+                android:background="@drawable/previous_bg"
+                android:minHeight="@dimen/login_button_row">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:contentDescription="@null"
                     android:layout_gravity="center_vertical"
+                    android:contentDescription="@null"
                     android:src="@drawable/arrow_leftward_default"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/previous"
-                    android:layout_gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/login_page_text"/>
             </FrameLayout>
@@ -89,22 +91,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:minHeight="@dimen/login_button_row"
-                android:background="@drawable/login_button_bg">
+                android:background="@drawable/login_button_bg"
+                android:minHeight="@dimen/login_button_row">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:contentDescription="@null"
                     android:layout_gravity="center_vertical|end"
+                    android:contentDescription="@null"
                     android:src="@drawable/arrow_rightward_default"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/next"
-                    android:layout_gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/login_page_text"/>
 

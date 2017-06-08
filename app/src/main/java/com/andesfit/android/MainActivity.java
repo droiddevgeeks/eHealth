@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.andesfit.android.util.HealthSharedPreference;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,6 +24,20 @@ public class MainActivity extends AppCompatActivity
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("My Health");
+        HealthSharedPreference preference = HealthSharedPreference.getInstance(this);
+        ((TextView) findViewById(R.id.name)).setText(preference.getFName() + " " + preference.getLName());
+        ((TextView) findViewById(R.id.weightTv)).setText(preference.getWeight() + "kg");
+        ((TextView) findViewById(R.id.currentWeight)).setText(preference.getWeight() + "kg");
+
+        try {
+            double bmi = Double.valueOf(preference.getWeight()) /
+                    ((Double.valueOf(preference.getHeight()) / 100) *
+                            (Double.valueOf(preference.getHeight()) / 100));
+            bmi = Math.round(bmi);
+            ((TextView) findViewById(R.id.bmiTv)).setText("" + bmi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +47,8 @@ public class MainActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        //BMI = x KG / (y M * y M)
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_info) {
 
         }
-            // Handle the camera action
+        // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {
 //
 //        } else if (id == R.id.nav_slideshow) {

@@ -5,8 +5,10 @@
     android:layout_height="?attr/actionBarSize"
     android:layout_marginTop="28dp"
     android:background="@drawable/e_health_icon"
+    android:paddingBottom="16dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 </LinearLayout>
