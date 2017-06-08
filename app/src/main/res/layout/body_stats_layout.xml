@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <include layout="@layout/body_stat_header_layout"/>
-
-    <View
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/bmi_layout"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/fat_layout"/>
+        <include layout="@layout/body_stat_header_layout" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/blood_pressure_layout"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/blood_glucose_layout"/>
+        <include layout="@layout/bmi_layout" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/muscle_layout"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="15dp"/>
-    <include layout="@layout/pulse_layout"/>
-</LinearLayout>
+        <include layout="@layout/fat_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <include layout="@layout/blood_pressure_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <include layout="@layout/blood_glucose_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <include layout="@layout/muscle_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <include layout="@layout/pulse_layout" />
+    </LinearLayout>
+</ScrollView>

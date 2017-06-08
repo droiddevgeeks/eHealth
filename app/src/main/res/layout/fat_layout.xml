@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,7 +14,7 @@
         android:padding="5dp"
         android:text="@string/fat"
         android:textSize="@dimen/profile_question"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
                 android:layout_height="80dp"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/bmi"/>
+                android:src="@drawable/bmi" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,14 +48,14 @@
                 android:layout_height="wrap_content"
                 android:text="5.50"
                 android:textSize="@dimen/text_large"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Athletic"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -67,186 +66,187 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/body_stat_header_bg"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/body_stat_header_bg"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/male"
-                android:layout_weight="1"
                 android:textSize="@dimen/skip"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="@string/female"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/skip"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="@string/rating"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/skip"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="5-10"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="8-15"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="@string/athletic"
-                />
+                android:textSize="@dimen/skip" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="11-14"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="16-23"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="@string/good"
-                />
+                android:textSize="@dimen/skip" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="15-20"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="24-30"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="@string/acceptable"
-                />
+                android:textSize="@dimen/skip" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="21-24"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="31-36"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="@string/overweight"
-                />
+                android:textSize="@dimen/skip" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text=">24"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                android:text=">37"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                android:text="@string/obese"
-                />
-        </LinearLayout>
+                android:textSize="@dimen/skip" />
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=">37"
+                android:textSize="@dimen/skip" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/obese"
+                android:textSize="@dimen/skip" />
+        </LinearLayout>
 
 
     </LinearLayout>

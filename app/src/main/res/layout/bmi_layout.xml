@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/body_stat_header_bg"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="@dimen/profile_question"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:padding="5dp"
-        android:text="@string/BMI"/>
+        android:text="@string/BMI"
+        android:textSize="@dimen/profile_question"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_margin="15dp"
+        android:orientation="horizontal"
         android:weightSum="2">
 
         <LinearLayout
@@ -27,87 +28,90 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/bmi"
-            android:contentDescription="@null"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:contentDescription="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/bmi" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:padding="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:text="13.10"
                 android:textSize="@dimen/text_large"
-                android:text="13.10"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:text="UnderWeight"
                 android:textSize="20sp"
-                android:text="UnderWeight"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
 
-
-
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="@dimen/profile_question"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:text="@string/range"/>
+        android:layout_marginRight="20dp"
+        android:text="@string/range"
+        android:textSize="@dimen/profile_question"
+        android:textStyle="bold" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/body_stat_header_bg"
-        android:textSize="@dimen/profile_question"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:background="@drawable/body_stat_header_bg"
         android:padding="5dp"
-        android:text="@string/bmi1"/>
+        android:text="@string/bmi1"
+        android:textSize="@dimen/profile_question" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/body_stat_header_bg"
-        android:textSize="@dimen/profile_question"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:padding="5dp"
-        android:text="@string/bmi2"/>
+        android:text="@string/bmi2"
+        android:textSize="@dimen/profile_question" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/body_stat_header_bg"
-        android:textSize="@dimen/profile_question"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:padding="5dp"
-        android:text="@string/bmi3"/>
+        android:text="@string/bmi3"
+        android:textSize="@dimen/profile_question" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/body_stat_header_bg"
-        android:textSize="@dimen/profile_question"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/body_stat_header_bg"
         android:padding="5dp"
-        android:text="@string/bmi4"/>
+        android:text="@string/bmi4"
+        android:textSize="@dimen/profile_question" />
 </LinearLayout>

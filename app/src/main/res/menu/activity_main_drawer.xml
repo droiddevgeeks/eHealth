@@ -8,6 +8,10 @@
                 android:icon="@mipmap/slidingmenu_navigation_ic_my_health"
                 android:title="My Health" />
             <item
+                android:id="@+id/nav_report"
+                android:icon="@mipmap/slidingmenu_navigation_ic_my_report"
+                android:title="My Report" />
+            <item
                 android:id="@+id/nav_my_goal"
                 android:icon="@mipmap/slidingmenu_navigation_ic_my_goal"
                 android:title="My Goal" />
@@ -15,10 +19,7 @@
                 android:id="@+id/nav_history"
                 android:icon="@mipmap/slidingmenu_navigation_ic_my_history"
                 android:title="My History" />
-            <item
-                android:id="@+id/nav_report"
-                android:icon="@mipmap/slidingmenu_navigation_ic_my_report"
-                android:title="My Report" />
+
         </menu>
     </item>
 

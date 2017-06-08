@@ -53,7 +53,7 @@
     <string name="oxygen">Oxygen Saturation %</string>
     <string name="temp">Temperature</string>
     <string name="range">Range</string>
-    
+
     <!--bmi range-->
     <string name="bmi1"><b>&lt;18.5</b> = Underweight</string>
     <string name="bmi2"><b>18.5-25</b> = Healthy</string>
@@ -67,11 +67,10 @@
     <string name="acceptable">Acceptable</string>
     <string name="overweight">Overweight</string>
     <string name="obese">Obese</string>
-    
+
     <!--blood pressure-->
     <string name="systolic">Systolic</string>
     <string name="diastolic">Diastolic</string>
-
 
 
 </resources>

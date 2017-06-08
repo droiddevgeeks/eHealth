@@ -1,72 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/yolo"
-        android:scaleType="fitXY"/>
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/yolo" />-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="horizontal"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:weightSum="4">
 
         <TextView
+            android:id="@+id/bs_user_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="arpit"
-            android:gravity="center"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="arpit"
             android:textSize="@dimen/skip"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:src="@drawable/goal_ic_type_weighing"/>
+            android:src="@drawable/goal_ic_type_weighing" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@mipmap/slidingmenu_navigation_ic_device_measuring_tape"/>
+            android:src="@mipmap/slidingmenu_navigation_ic_device_measuring_tape" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:weightSum="4">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Male 28"
             android:gravity="center_horizontal"
-            android:textSize="@dimen/skip"/>
+            android:text="Male 28"
+            android:textSize="@dimen/skip" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="48.80KG"
             android:gravity="center_horizontal"
+            android:text="48.80KG"
             android:textSize="@dimen/skip"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
@@ -75,14 +79,14 @@
             android:gravity="center_horizontal"
             android:text="6'4'"
             android:textSize="@dimen/skip"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="1,Dec2015"
-            android:textSize="@dimen/skip"/>
+            android:textSize="@dimen/skip" />
     </LinearLayout>
 
 

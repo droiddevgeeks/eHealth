@@ -1,5 +1,6 @@
 package com.andesfit.android;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,12 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
+import com.andesfit.android.body_stats.BodyStatsFragment;
 import com.andesfit.android.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +86,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_weight)
-        {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new BodyStatsFragment()).addToBackStack(null).commit();
+        if (id == R.id.nav_report) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new BodyStatsFragment()).addToBackStack("bodystate").commit();
+        }
         if (id == R.id.nav_my_health) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).addToBackStack("home").commit();
         }
         // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {
@@ -107,5 +108,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

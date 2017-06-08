@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,7 +14,7 @@
         android:padding="5dp"
         android:text="@string/bg"
         android:textSize="@dimen/profile_question"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
                 android:layout_height="100dp"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
-                android:src="@drawable/glucose"/>
+                android:src="@drawable/glucose" />
         </LinearLayout>
 
     </LinearLayout>
@@ -43,156 +42,158 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/body_stat_header_bg"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/body_stat_header_bg"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="4"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="4">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:text="@string/male"
-                android:layout_weight="1.5"
-                android:visibility="invisible"
                 android:textSize="@dimen/skip"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="Normal"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/skip"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
                 android:text="Diabetec"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/skip"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="4"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="4">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:text="Fasting"
-                android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="&lt;100"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
-                android:text="&gt;120"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="4"
-            android:padding="5dp"
-            android:orientation="horizontal">
+                android:textSize="@dimen/skip" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="&gt;120"
+                android:textSize="@dimen/skip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:text="After meal"
-                android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="&lt;120"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
                 android:text="120-180"
-                />
+                android:textSize="@dimen/skip" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="4"
+            android:orientation="horizontal"
             android:padding="5dp"
-            android:orientation="horizontal">
+            android:weightSum="4">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:text="Bedtime"
-                android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/skip"
-                android:text="&lt;110"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
-                android:text="90-150"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="4"
-            android:padding="5dp"
-            android:orientation="horizontal">
+                android:textSize="@dimen/skip" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Random"
+                android:layout_weight="1"
+                android:text="&lt;110"
+                android:textSize="@dimen/skip" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
-                />
+                android:text="90-150"
+                android:textSize="@dimen/skip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Random"
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="@dimen/skip"
                 android:text="80-120"
-                />
+                android:textSize="@dimen/skip" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="@dimen/skip"
                 android:text="&gt;120"
-                />
+                android:textSize="@dimen/skip" />
         </LinearLayout>
 
 
