@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.andesfit.android.R;
-import com.andesfit.android.body_stats.BodyStatsFragment;
 
 /**
  * Created by Vampire on 2017-05-24.

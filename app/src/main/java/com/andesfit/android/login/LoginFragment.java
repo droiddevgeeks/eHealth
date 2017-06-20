@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.andesfit.android.profile.CreateAccountFragment;
+import com.andesfit.android.fragments.profile.CreateAccountFragment;
 import com.andesfit.android.R;
 
 /**

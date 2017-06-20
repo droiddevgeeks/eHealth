@@ -2,24 +2,40 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.andesfit.android">
 
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".login.LoginActivity"
+        <activity
+            android:name=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".login.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.DeviceControlActivity"></activity>
+        <activity android:name=".activities.DeviceScanActivity" />
+
+        <service
+            android:name=".services.bluetooth.BluetoothLeService"
+            android:enabled="true" />
+
+        <activity android:name=".activities.TemperatureMeasurement"></activity>
     </application>
 
 </manifest>

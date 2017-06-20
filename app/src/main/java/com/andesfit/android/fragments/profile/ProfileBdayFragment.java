@@ -1,4 +1,4 @@
-package com.andesfit.android.profile;
+package com.andesfit.android.fragments.profile;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.andesfit.android.profile;
+package com.andesfit.android.fragments.profile;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

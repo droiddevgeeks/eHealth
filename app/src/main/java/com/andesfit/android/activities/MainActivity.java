@@ -1,5 +1,6 @@
-package com.andesfit.android;
+package com.andesfit.android.activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,7 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.andesfit.android.body_stats.BodyStatsFragment;
+import com.andesfit.android.R;
+import com.andesfit.android.fragments.BodyStatsFragment;
 import com.andesfit.android.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -91,6 +93,10 @@ public class MainActivity extends AppCompatActivity
         }
         if (id == R.id.nav_my_health) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).addToBackStack("home").commit();
+        }
+        if (id == R.id.nav_temp) {
+            Intent intent = new Intent(MainActivity.this, TemperatureMeasurement.class);
+            startActivity(intent);
         }
         // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {

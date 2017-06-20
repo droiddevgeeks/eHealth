@@ -1,4 +1,4 @@
-package com.andesfit.android.body_stats;
+package com.andesfit.android.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

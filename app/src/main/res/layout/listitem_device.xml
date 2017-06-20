@@ -12,20 +12,20 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_refresh"
-        android:checkable="false"
-        android:orderInCategory="1"
-        android:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/menu_scan"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/menu_scan" />
-    <item
-        android:id="@+id/menu_stop"
-        android:orderInCategory="101"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/menu_stop" />
-</menu>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/device_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/device_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12dp" />
+</LinearLayout>

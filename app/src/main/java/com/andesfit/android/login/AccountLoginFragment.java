@@ -12,9 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andesfit.android.MainActivity;
+import com.andesfit.android.activities.MainActivity;
 import com.andesfit.android.R;
-import com.andesfit.android.profile.ProfileSettingFragment;
 import com.andesfit.android.util.HealthSharedPreference;
 
 /**
