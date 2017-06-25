@@ -17,10 +17,12 @@ import com.andesfit.android.fragments.BodyStatsFragment;
 import com.andesfit.android.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -51,24 +53,30 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else
+        {
             super.onBackPressed();
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -84,20 +92,31 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_report) {
+        if (id == R.id.nav_report)
+        {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new BodyStatsFragment()).addToBackStack("bodystate").commit();
         }
-        if (id == R.id.nav_my_health) {
+        if (id == R.id.nav_my_health)
+        {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).addToBackStack("home").commit();
         }
-        if (id == R.id.nav_temp) {
+        if (id == R.id.nav_temp)
+        {
             Intent intent = new Intent(MainActivity.this, TemperatureMeasurement.class);
             startActivity(intent);
         }
+        if( id == R.id.nav_gnc)
+        {
+            Intent intent = new Intent(MainActivity.this, TemperatureMeasurement.class);
+            startActivity(intent);
+        }
+
+
         // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {
 //
@@ -117,7 +136,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+     public void onFragmentInteraction(Uri uri)
+    {
 
     }
 }

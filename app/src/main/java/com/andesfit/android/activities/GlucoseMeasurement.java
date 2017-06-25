@@ -26,16 +26,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andesfit.android.R;
+import com.andesfit.android.models.GlucoseRecord;
 import com.andesfit.android.services.bluetooth.BluetoothLeService;
 import com.andesfit.android.util.ApplicationContants;
 import com.andesfit.android.util.bluetooth.SampleGattAttributes;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
-public class TemperatureMeasurement extends AppCompatActivity
+/**
+ * Created by Vampire on 2017-06-25.
+ */
+
+public class GlucoseMeasurement extends AppCompatActivity
 {
-
-    //    private DeviceScanActivity.LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothAdapter mBluetoothAdapter;
     private String mDeviceName;
     private String mDeviceAddress;
@@ -80,7 +85,7 @@ public class TemperatureMeasurement extends AppCompatActivity
             }
             else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action))
             {
-                displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+                displayGlucoseData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
             }
         }
     };
@@ -121,7 +126,7 @@ public class TemperatureMeasurement extends AppCompatActivity
                 @Override
                 public void run()
                 {
-                    if ((!TextUtils.isEmpty(device.getName()) && device.getName().equalsIgnoreCase("Tem BH")))
+                    if ((!TextUtils.isEmpty(device.getName()) && device.getName().equalsIgnoreCase("Samico GL")))
                     {
 
                         if (mScanning)
@@ -151,13 +156,9 @@ public class TemperatureMeasurement extends AppCompatActivity
         return intentFilter;
     }
 
-    private void displayData(String stringExtra)
+    private void displayGlucoseData(String stringExtra)
     {
-        String[] strings = stringExtra.split(" ");
-        String t = strings[2].trim() + strings[1].trim();
-        int data = Integer.parseInt(t.trim(), 16);
-        float data1 = data / 100.0f;
-        tempRecievedData.setText(data1 + " degree C");
+
     }
 
     private void updateConnectionState(int connected)
@@ -179,14 +180,14 @@ public class TemperatureMeasurement extends AppCompatActivity
         {
             uuid = gattService.getUuid().toString();
             Log.i("ServiceId", uuid);
-            if (uuid.equalsIgnoreCase(SampleGattAttributes.SERVICE_TEMPERATURE_MEASUREMENT))
+            if (uuid.equalsIgnoreCase(SampleGattAttributes.SERVICE_GLUCOSE_MEASUREMENT))
             {
 
                 // Loops through available Characteristics.
                 for (BluetoothGattCharacteristic gattCharacteristic : gattService.getCharacteristics())
                 {
                     Log.i("charuuid ", gattCharacteristic.getUuid().toString());
-                    if (gattCharacteristic.getUuid().toString().equalsIgnoreCase(SampleGattAttributes.CHAR_TEMPERATURE_MEASUREMENT))
+                    if (gattCharacteristic.getUuid().toString().equalsIgnoreCase(SampleGattAttributes.CHAR_GLUCOSE_MEASUREMENT))
                     {
                         mSelectedCharacteristic = gattCharacteristic;
                         runOnUiThread(new Runnable()
@@ -207,7 +208,7 @@ public class TemperatureMeasurement extends AppCompatActivity
 
     private void readDataFromChar(final BluetoothGattCharacteristic characteristic)
     {
-        if (characteristic == null)
+        /*if (characteristic == null)
             return;
         final int charaProp = characteristic.getProperties();
         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0)
@@ -225,7 +226,75 @@ public class TemperatureMeasurement extends AppCompatActivity
         {
             mNotifyCharacteristic = characteristic;
             mBluetoothLeService.setCharacteristicNotification(characteristic, true);
+        }*/
+
+        final UUID uuid = characteristic.getUuid();
+        if (SampleGattAttributes.CHAR_GLUCOSE_MEASUREMENT.equals(uuid))
+        {
+
+            int offset = 0;
+            final int flags = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset);
+            offset += 1;
+
+            final boolean timeOffsetPresent = (flags & 0x01) > 0;
+            final boolean typeAndLocationPresent = (flags & 0x02) > 0;
+            final int concentrationUnit = (flags & 0x04) > 0 ? ApplicationContants.UNIT_molpl : ApplicationContants.UNIT_kgpl;
+            final boolean sensorStatusAnnunciationPresent = (flags & 0x08) > 0;
+            final boolean contextInfoFollows = (flags & 0x10) > 0;
+
+            // create and fill the new record
+            final GlucoseRecord record = new GlucoseRecord();
+            record.setSequenceNumber(characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset));
+            offset += 2;
+
+            final int year = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset);
+            final int month = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 2) - 1; // months are 1-based
+            final int day = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 3);
+            final int hours = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 4);
+            final int minutes = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 5);
+            final int seconds = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 6);
+            offset += 7;
+
+            final Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, day, hours, minutes, seconds);
+            record.setTime(calendar);
+
+            if (timeOffsetPresent)
+            {
+                // time offset is ignored in the current release
+                record.setTimeOffset(characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, offset));
+                offset += 2;
+            }
+
+            if (typeAndLocationPresent)
+            {
+                record.setGlucoseConcentration(characteristic.getFloatValue(BluetoothGattCharacteristic.FORMAT_SFLOAT, offset));
+                //  setting data to display glucose concentration
+                tempRecievedData.setText("" +record.getGlucoseConcentration());
+                record.setConcentrationUnit(concentrationUnit);
+                final int typeAndLocation = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 2);
+                record.setType((typeAndLocation & 0xF0) >> 4); // TODO this way or around?
+                record.setSampleLocation((typeAndLocation & 0x0F));
+                offset += 3;
+            }
+
+            if (sensorStatusAnnunciationPresent)
+            {
+                record.setStatus(characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset));
+            }
+
+            // data set modifications must be done in UI thread
+            mHandler.post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+
+                }
+            });
         }
+
+
     }
 
     @Override

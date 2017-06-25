@@ -28,14 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DeviceControlActivity"></activity>
+        <activity android:name=".activities.DeviceControlActivity"/>
         <activity android:name=".activities.DeviceScanActivity" />
 
         <service
             android:name=".services.bluetooth.BluetoothLeService"
             android:enabled="true" />
 
-        <activity android:name=".activities.TemperatureMeasurement"></activity>
+        <activity android:name=".activities.TemperatureMeasurement"/>
+        <activity android:name=".activities.GlucoseMeasurement"/>
     </application>
 
 </manifest>
