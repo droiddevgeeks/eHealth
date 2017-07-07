@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.andesfit.android.activities.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:context="com.andesfit.android.activities.MainActivity">
 
     <LinearLayout
         android:id="@+id/container"
@@ -46,9 +45,10 @@
                         android:layout_gravity="center"
                         android:src="@drawable/circle_shape" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <com.andesfit.android.util.RoundedImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="center"
                         android:src="@drawable/profile_circle_shape" />
 

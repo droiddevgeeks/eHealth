@@ -23,12 +23,12 @@
 
         <com.andesfit.android.util.RoundedImageView
             android:id="@+id/cameraImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_below="@id/imgLogo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/logo_profile_setting_take_avator"/>
 
         <TextView

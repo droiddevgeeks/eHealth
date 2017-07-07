@@ -19,23 +19,27 @@ import com.andesfit.android.util.HealthSharedPreference;
  * Created by Vampire on 2017-05-24.
  */
 
-public class CreateAccountFragment extends Fragment implements View.OnClickListener {
+public class CreateAccountFragment extends Fragment implements View.OnClickListener
+{
 
     private EditText mobile, password, cnfPassword;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         return inflater.inflate(R.layout.create_account_layout, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         init();
     }
 
-    private void init() {
+    private void init()
+    {
         TextView title = (TextView) getView().findViewById(R.id.profileSetting);
         title.setText(getContext().getResources().getString(R.string.create_acc));
 
@@ -52,10 +56,13 @@ public class CreateAccountFragment extends Fragment implements View.OnClickListe
 
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             case R.id.btnSubmit:
-                if (checkInputField()) {
+                if (checkInputField())
+                {
                     createProfileFragment();
                 }
                 break;
@@ -65,13 +72,16 @@ public class CreateAccountFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    boolean checkInputField() {
-        if (mobile.getText().length() < 10 || cnfPassword.getText().length() == 0 || password.getText().length() == 0) {
+    boolean checkInputField()
+    {
+        if (mobile.getText().length() < 10 || cnfPassword.getText().length() == 0 || password.getText().length() == 0)
+        {
             Snackbar.make(cnfPassword, "Please enter correct value", Snackbar.LENGTH_LONG).show();
 //            Toast.makeText(getContext() , "Please enter correct value", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (!password.getText().toString().equalsIgnoreCase(cnfPassword.getText().toString())) {
+        if (!password.getText().toString().equalsIgnoreCase(cnfPassword.getText().toString()))
+        {
             Toast.makeText(getContext(), "Please enter same password", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -79,13 +89,15 @@ public class CreateAccountFragment extends Fragment implements View.OnClickListe
         return true;
     }
 
-    private void saveUserData() {
+    private void saveUserData()
+    {
         HealthSharedPreference preference = HealthSharedPreference.getInstance(getContext());
         preference.setMobileNumber(mobile.getText().toString());
         preference.setPassword(password.getText().toString());
     }
 
-    private void createProfileFragment() {
-        getFragmentManager().beginTransaction().add(R.id.container, new ProfileSettingFragment()).addToBackStack(null).commit();
+    private void createProfileFragment()
+    {
+        getFragmentManager().beginTransaction().replace(R.id.container, new ProfileSettingFragment()).addToBackStack(null).commit();
     }
 }

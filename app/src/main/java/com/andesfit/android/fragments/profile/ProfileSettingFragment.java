@@ -53,6 +53,6 @@ public class ProfileSettingFragment extends Fragment implements View.OnClickList
 
     private void createProfile()
     {
-        getFragmentManager().beginTransaction().add(R.id.container, new ProfileNameFragment()).addToBackStack(null).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, new ProfileNameFragment()).addToBackStack(null).commit();
     }
 }

@@ -66,6 +66,6 @@ public class ProfileHeightFragment extends Fragment implements View.OnClickListe
 
     private void createWeightProfile()
     {
-        getFragmentManager().beginTransaction().add(R.id.container, new ProfileWeightFragment()).addToBackStack(null).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, new ProfileWeightFragment()).addToBackStack(null).commit();
     }
 }

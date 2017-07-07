@@ -1,16 +1,26 @@
 package com.andesfit.android.fragments;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.andesfit.android.R;
 import com.andesfit.android.util.HealthSharedPreference;
+import com.andesfit.android.util.RoundedImageView;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,8 +84,29 @@ public class HomeFragment extends Fragment
     {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        RoundedImageView profileImage = (RoundedImageView) view.findViewById(R.id.profileImage);
 
         HealthSharedPreference preference = HealthSharedPreference.getInstance(getActivity());
+        try
+        {
+            if( preference.getProfileimage() !=null)
+            {
+                byte[] decodedByte = Base64.decode(preference.getProfileimage(), 0);
+                profileImage.setImageBitmap(BitmapFactory.decodeByteArray(decodedByte, 0,   decodedByte.length));
+
+            }
+            else if(preference.getFBId()!=null)
+            {
+                URL imageURL = new URL("https://graph.facebook.com/" + preference.getFBId() + "/picture?type=large");
+                Picasso.with(getContext()).load(imageURL.toString()).into(profileImage);
+            }
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
         ((TextView) view.findViewById(R.id.name)).setText(preference.getFName() + " " + preference.getLName());
         ((TextView) view.findViewById(R.id.weightTv)).setText(preference.getWeight() + "kg");
         ((TextView) view.findViewById(R.id.currentWeight)).setText(preference.getWeight() + "kg");
