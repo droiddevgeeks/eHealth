@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         }
         if( id == R.id.nav_gnc)
         {
-            Intent intent = new Intent(MainActivity.this, TemperatureMeasurement.class);
+            Intent intent = new Intent(MainActivity.this, GlucoseMeasurement.class);
             startActivity(intent);
         }
 

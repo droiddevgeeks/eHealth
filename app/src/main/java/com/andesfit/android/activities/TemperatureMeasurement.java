@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,15 @@ import com.andesfit.android.services.bluetooth.BluetoothLeService;
 import com.andesfit.android.util.ApplicationContants;
 import com.andesfit.android.util.bluetooth.SampleGattAttributes;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class TemperatureMeasurement extends AppCompatActivity
 {
 
+    private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     //    private DeviceScanActivity.LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothAdapter mBluetoothAdapter;
     private String mDeviceName;
@@ -46,10 +51,10 @@ public class TemperatureMeasurement extends AppCompatActivity
     private BluetoothGattCharacteristic mSelectedCharacteristic;
     private boolean mScanning;
     private TextView tempRecievedData;
+    private LinearLayout historyTemp;
     private Handler mHandler;
     private BluetoothDevice mDevice;
     private Button btn;
-
     // Handles various events fired by the Service.
     // ACTION_GATT_CONNECTED: connected to a GATT server.
     // ACTION_GATT_DISCONNECTED: disconnected from a GATT server.
@@ -153,11 +158,14 @@ public class TemperatureMeasurement extends AppCompatActivity
 
     private void displayData(String stringExtra)
     {
+        historyTemp.addView(tempRecievedData);
         String[] strings = stringExtra.split(" ");
         String t = strings[2].trim() + strings[1].trim();
         int data = Integer.parseInt(t.trim(), 16);
         float data1 = data / 100.0f;
-        tempRecievedData.setText(data1 + " degree C");
+        Calendar cal = Calendar.getInstance();
+        System.out.println(sdf.format(cal.getTime()));
+        tempRecievedData.setText(data1 + " degree C" + " " + sdf.format(cal.getTime()));
     }
 
     private void updateConnectionState(int connected)
@@ -234,6 +242,7 @@ public class TemperatureMeasurement extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature_measurement);
         btn = (Button) findViewById(R.id.button_measurement);
+        historyTemp = (LinearLayout) findViewById(R.id.historyTemp);
         tempRecievedData = (TextView) findViewById(R.id.temp_data);
         mHandler = new Handler();
         btn.setOnClickListener(new View.OnClickListener()

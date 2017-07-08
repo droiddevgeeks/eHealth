@@ -32,8 +32,11 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.andesfit.android.models.GlucoseRecord;
+import com.andesfit.android.util.ApplicationContants;
 import com.andesfit.android.util.bluetooth.SampleGattAttributes;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,20 +54,18 @@ public class BluetoothLeService extends Service
 
     public final static UUID UUID_HEART_RATE_MEASUREMENT = UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
     public final static UUID UUID_TEMPERATURE_MEASUREMENT = UUID.fromString(SampleGattAttributes.CHAR_TEMPERATURE_MEASUREMENT);
+    public final static UUID UUID_GLUCOSE_MEASUREMENT = UUID.fromString(SampleGattAttributes.CHAR_GLUCOSE_MEASUREMENT);
 
     private final static String TAG = BluetoothLeService.class.getSimpleName();
 
     private static final int STATE_DISCONNECTED = 0;
     private static final int STATE_CONNECTING = 1;
     private static final int STATE_CONNECTED = 2;
-
-    private int mConnectionState = STATE_DISCONNECTED;
     private final IBinder mBinder = new LocalBinder();
+    private int mConnectionState = STATE_DISCONNECTED;
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothGatt mBluetoothGatt;
-    private String mBluetoothDeviceAddress;
-
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback()
@@ -119,6 +120,7 @@ public class BluetoothLeService extends Service
             broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
         }
     };
+    private String mBluetoothDeviceAddress;
 
     private void broadcastUpdate(final String action)
     {
@@ -133,6 +135,10 @@ public class BluetoothLeService extends Service
         // This is special handling for the Heart Rate Measurement profile.  Data parsing is
         // carried out as per profile specifications:
         // http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
+        try {
+            decodeGlucoData(characteristic);
+        } catch (Exception e) {
+        }
         if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid()))
         {
             int flag = characteristic.getProperties();
@@ -162,11 +168,68 @@ public class BluetoothLeService extends Service
                 {
                     stringBuilder.append(String.format("%02X ", byteChar));
                 }
+                Log.i(TAG, stringBuilder.toString());
                 intent.putExtra(EXTRA_DATA, stringBuilder.toString());
             }
         }
         sendBroadcast(intent);
     }
+
+    public void decodeGlucoData(BluetoothGattCharacteristic characteristic) {
+
+        final UUID uuid = characteristic.getUuid();
+        if (SampleGattAttributes.CHAR_GLUCOSE_MEASUREMENT.equals(uuid)) {
+
+            int offset = 0;
+            final int flags = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset);
+            offset += 1;
+
+            final boolean timeOffsetPresent = (flags & 0x01) > 0;
+            final boolean typeAndLocationPresent = (flags & 0x02) > 0;
+            final int concentrationUnit = (flags & 0x04) > 0 ? ApplicationContants.UNIT_molpl : ApplicationContants.UNIT_kgpl;
+            final boolean sensorStatusAnnunciationPresent = (flags & 0x08) > 0;
+            final boolean contextInfoFollows = (flags & 0x10) > 0;
+
+            // create and fill the new record
+            final GlucoseRecord record = new GlucoseRecord();
+            record.setSequenceNumber(characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset));
+            offset += 2;
+
+            final int year = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset);
+            final int month = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 2) - 1; // months are 1-based
+            final int day = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 3);
+            final int hours = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 4);
+            final int minutes = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 5);
+            final int seconds = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 6);
+            offset += 7;
+
+            final Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, day, hours, minutes, seconds);
+            record.setTime(calendar);
+
+            if (timeOffsetPresent) {
+                // time offset is ignored in the current release
+                record.setTimeOffset(characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT16, offset));
+                offset += 2;
+            }
+
+            if (typeAndLocationPresent) {
+                record.setGlucoseConcentration(characteristic.getFloatValue(BluetoothGattCharacteristic.FORMAT_SFLOAT, offset));
+                //  setting data to display glucose concentration
+                record.setConcentrationUnit(concentrationUnit);
+                final int typeAndLocation = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 2);
+                record.setType((typeAndLocation & 0xF0) >> 4); // TODO this way or around?
+                record.setSampleLocation((typeAndLocation & 0x0F));
+                offset += 3;
+            }
+
+            if (sensorStatusAnnunciationPresent) {
+                record.setStatus(characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT16, offset));
+            }
+
+        }
+    }
+
 
     @Override
     public IBinder onBind(Intent intent)
@@ -335,6 +398,12 @@ public class BluetoothLeService extends Service
         {
             BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_INDICATION_VALUE);
+            mBluetoothGatt.writeDescriptor(descriptor);
+        }
+
+        if (UUID_GLUCOSE_MEASUREMENT.equals(characteristic.getUuid())) {
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG_GLU));
+            descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
         }
     }
