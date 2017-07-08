@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import com.andesfit.android.R;
 import com.andesfit.android.fragments.BodyStatsFragment;
 import com.andesfit.android.fragments.HomeFragment;
+import com.andesfit.android.login.LoginActivity;
+import com.facebook.login.LoginManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener
@@ -114,6 +116,13 @@ public class MainActivity extends AppCompatActivity
         {
             Intent intent = new Intent(MainActivity.this, GlucoseMeasurement.class);
             startActivity(intent);
+        }
+        if( id == R.id.userLogOut)
+        {
+            LoginManager.getInstance().logOut();
+            Intent login = new Intent(this , LoginActivity.class);
+            startActivity(login);
+            finish();
         }
 
 

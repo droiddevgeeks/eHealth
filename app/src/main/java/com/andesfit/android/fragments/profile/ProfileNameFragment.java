@@ -80,6 +80,6 @@ public class ProfileNameFragment extends Fragment implements View.OnClickListene
 
     private void createBdayProfile()
     {
-        getFragmentManager().beginTransaction().add(R.id.container, new ProfileBdayFragment()).addToBackStack(null).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, new ProfileBdayFragment()).addToBackStack(null).commit();
     }
 }

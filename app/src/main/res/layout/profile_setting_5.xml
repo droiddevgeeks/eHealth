@@ -36,15 +36,21 @@
             android:textSize="@dimen/profile_question"/>
 
 
-        <EditText
-            android:id="@+id/weightInput"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/wt_hint"
-            android:inputType="numberDecimal"
-            android:textColorHint="@color/hint"
-            android:textSize="@dimen/profile_question"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/weightInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/wt_hint"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/hint"
+                android:textSize="@dimen/profile_question"/>
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,16 +59,21 @@
             android:text="@string/curr_waist"
             android:textSize="@dimen/profile_question"/>
 
-
-        <EditText
-            android:id="@+id/waistInput"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/waist_hint"
-            android:inputType="numberDecimal"
-            android:textColorHint="@color/hint"
-            android:textSize="@dimen/profile_question"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/waistInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/waist_hint"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/hint"
+                android:textSize="@dimen/profile_question"/>
+        </android.support.design.widget.TextInputLayout>
 
 
         <LinearLayout

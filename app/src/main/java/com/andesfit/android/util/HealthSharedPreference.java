@@ -8,7 +8,8 @@ import android.content.SharedPreferences;
  * Created by Vampire on 2017-05-25.
  */
 
-public class HealthSharedPreference {
+public class HealthSharedPreference
+{
 
     private static HealthSharedPreference mInstance;
     private final String USER_PREFS = "HEALTH_PREFS";
@@ -20,82 +21,123 @@ public class HealthSharedPreference {
     private final String WEIGHT = "weight";
     private final String WAIST = "waist";
     private final String DOB = "dob";
+    private final String FBID = "FBID";
+    private final String PROFILE_IMG = "PROIMG";
     private SharedPreferences mAppSharedPrefs;
     private SharedPreferences.Editor mPrefsEditor;
 
-    private HealthSharedPreference(Context context) {
+    private HealthSharedPreference(Context context)
+    {
         this.mAppSharedPrefs = context.getSharedPreferences(USER_PREFS, Activity.MODE_PRIVATE);
         this.mPrefsEditor = mAppSharedPrefs.edit();
     }
 
-    public static HealthSharedPreference getInstance(Context context) {
-        if (mInstance == null) {
+    public static HealthSharedPreference getInstance(Context context)
+    {
+        if (mInstance == null)
+        {
             mInstance = new HealthSharedPreference(context);
         }
         return mInstance;
     }
 
-    public String getMobileNumber() {
+    public String getMobileNumber()
+    {
         return mAppSharedPrefs.getString(MOBILE, null);
     }
 
-    public void setMobileNumber(String mob) {
+    public void setMobileNumber(String mob)
+    {
         mPrefsEditor.putString(MOBILE, mob).commit();
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return mAppSharedPrefs.getString(PASSWORD, null);
     }
 
-    public void setPassword(String password) {
+    public void setFbProfileID(String id)
+    {
+        mPrefsEditor.putString(FBID, id).commit();
+    }
+
+    public String getFBId()
+    {
+        return mAppSharedPrefs.getString(FBID,null);
+    }
+
+    public void setPassword(String password)
+    {
         mPrefsEditor.putString(PASSWORD, password).commit();
     }
 
-    public String getFName() {
+    public String getFName()
+    {
         return mAppSharedPrefs.getString(FNAME, "EHealth");
     }
 
-    public void setFName(String mob) {
+    public void setFName(String mob)
+    {
         mPrefsEditor.putString(FNAME, mob).commit();
     }
 
-    public String getLName() {
+    public String getLName()
+    {
         return mAppSharedPrefs.getString(LNAME, "");
     }
 
-    public void setLName(String mob) {
+    public void setLName(String mob)
+    {
         mPrefsEditor.putString(LNAME, mob).commit();
     }
 
-    public String getDob() {
+    public String getDob()
+    {
         return mAppSharedPrefs.getString(DOB, "01/05/2017");
     }
 
-    public void setDob(String dob) {
+    public void setDob(String dob)
+    {
         mPrefsEditor.putString(DOB, dob).commit();
     }
 
-    public String getHeight() {
+    public String getHeight()
+    {
         return mAppSharedPrefs.getString(HEIGHT, "");
     }
 
-    public void setHeight(String dob) {
+    public void setHeight(String dob)
+    {
         mPrefsEditor.putString(HEIGHT, dob).commit();
     }
 
-    public String getWeight() {
+    public String getWeight()
+    {
         return mAppSharedPrefs.getString(WEIGHT, "");
     }
 
-    public void setWeight(String dob) {
+    public void setWeight(String dob)
+    {
         mPrefsEditor.putString(WEIGHT, dob).commit();
     }
 
-    public String getWaist() {
+    public String getWaist()
+    {
         return mAppSharedPrefs.getString(WAIST, "");
     }
 
-    public void setWaist(String dob) {
+    public void setWaist(String dob)
+    {
         mPrefsEditor.putString(WAIST, dob).commit();
+    }
+
+    public void setProfileimage(String path)
+    {
+        mPrefsEditor.putString(PROFILE_IMG, path).commit();
+    }
+
+    public String getProfileimage()
+    {
+        return mAppSharedPrefs.getString(PROFILE_IMG, null);
     }
 }

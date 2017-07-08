@@ -75,6 +75,6 @@ public class ProfileWeightFragment extends Fragment implements View.OnClickListe
 
     private void profileCompleted()
     {
-        getFragmentManager().beginTransaction().add(R.id.container, new ProfileSelfieFragment()).addToBackStack(null).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, new ProfileSelfieFragment()).addToBackStack(null).commit();
     }
 }

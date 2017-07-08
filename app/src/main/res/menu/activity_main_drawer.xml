@@ -54,6 +54,10 @@
                 android:id="@+id/nav_user_manage"
                 android:icon="@mipmap/slidingmenu_navigation_ic_user_management"
                 android:title="User Management" />
+            <item
+                android:id="@+id/userLogOut"
+                android:icon="@mipmap/slidingmenu_navigation_ic_user_management"
+                android:title="Logout" />
         </menu>
     </item>
     <item android:title="Other">

@@ -27,7 +27,9 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
 
-
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:id="@+id/edtMobile"
             android:layout_width="match_parent"
@@ -36,7 +38,11 @@
             android:textColorHint="@color/hint"
             android:inputType="number"
             android:textSize="@dimen/profile_question"/>
+        </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
@@ -46,6 +52,7 @@
             android:inputType="textPassword"
             android:textSize="@dimen/profile_question"/>
 
+        </android.support.design.widget.TextInputLayout>
 
 
 

@@ -52,16 +52,17 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/btnFBLogin"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fb_login_bg"
+            android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:layout_margin="4dp"
             android:minHeight="@dimen/login_button_row"
-            android:text="@string/login_option_fb"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/login_page_text"/>
+            android:paddingTop="12dp"
+            android:textSize="@dimen/login_page_text"
+            android:paddingBottom="12dp"/>
 
         <TextView
             android:id="@+id/btnCreateAccount"
