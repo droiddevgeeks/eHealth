@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/glu_mgdl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="140 mg/dL"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/glu_mmol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/glu_mgdl"
+            android:text="7.7 mmol/L"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/glu_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="27 Jan, 2017"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/glu_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/glu_date"
+            android:text="18:30 PM"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</LinearLayout>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -22,15 +23,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andesfit.android.R;
 import com.andesfit.android.models.GlucoseRecord;
+import com.andesfit.android.reading.BloodGlucoseMeterReading;
+import com.andesfit.android.satandard.BloodGlucoseStandard;
 import com.andesfit.android.services.bluetooth.BluetoothLeService;
 import com.andesfit.android.util.ApplicationContants;
 import com.andesfit.android.util.bluetooth.SampleGattAttributes;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -40,21 +46,31 @@ import java.util.UUID;
  */
 
 public class GlucoseMeasurement extends AppCompatActivity {
+    private static final DateFormat sdf = new SimpleDateFormat("dd MMM, yyyy");
+    private static final DateFormat stf = new SimpleDateFormat("HH:mm aa");
     private BluetoothAdapter mBluetoothAdapter;
     private String mDeviceName;
     private String mDeviceAddress;
     private ExpandableListView mGattServicesList;
     private BluetoothLeService mBluetoothLeService;
     private boolean mConnected = false;
+    private float glucoseValueInMgPerDl;
+    private float glucoseValueInMmolPerL;
     private BluetoothGattCharacteristic mNotifyCharacteristic;
     private BluetoothGattCharacteristic mSelectedCharacteristic;
     private BluetoothGattCharacteristic mRACPCharacteristic;
     private boolean mScanning;
-    private TextView tempRecievedData;
     private Handler mHandler;
+    private TextView infoTv;
+    private TextView gluDataMglTv;
+    private TextView gluDataMoleTv;
+    private TextView gluDateTv;
+    private TextView gluTimeTv;
+    private Button btnSave;
+    private View parentView;
     private BluetoothDevice mDevice;
-    private Button btn;
-    private String TAG = getClass().getSimpleName();
+    private BloodGlucoseMeterReading latestReading = null;
+    private ProgressBar progressBar;
     // Handles various events fired by the Service.
     // ACTION_GATT_CONNECTED: connected to a GATT server.
     // ACTION_GATT_DISCONNECTED: disconnected from a GATT server.
@@ -70,16 +86,23 @@ public class GlucoseMeasurement extends AppCompatActivity {
                 invalidateOptionsMenu();
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
                 mConnected = false;
+                progressBar.setVisibility(View.GONE);
+                infoTv.setBackgroundColor(getResources().getColor(R.color.account_btn));
                 updateConnectionState(R.string.disconnected);
                 invalidateOptionsMenu();
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Show all the supported services and characteristics on the user interface.
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-                displayGlucoseData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+//                displayGlucoseData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+                if (intent.hasExtra(BluetoothLeService.EXTRA_DATA)) {
+                    onReceiveBloodGlucoseMeterReading((BloodGlucoseMeterReading) intent.getParcelableExtra(
+                            BluetoothLeService.EXTRA_DATA));
+                }
             }
         }
     };
+    private String TAG = getClass().getSimpleName();
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
@@ -107,7 +130,7 @@ public class GlucoseMeasurement extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    Log.i(TAG, device.getName());
+                    Log.i(TAG, device.getName() + "");
                     if ((!TextUtils.isEmpty(device.getName()) && device.getName().equalsIgnoreCase("Samico GL"))) {
 
                         if (mScanning) {
@@ -134,12 +157,8 @@ public class GlucoseMeasurement extends AppCompatActivity {
         return intentFilter;
     }
 
-    private void displayGlucoseData(String stringExtra) {
-        Log.i(TAG, stringExtra);
-
-    }
-
     private void updateConnectionState(int connected) {
+        infoTv.setText(connected);
     }
 
     private void connectBTServices() {
@@ -157,40 +176,85 @@ public class GlucoseMeasurement extends AppCompatActivity {
             if (uuid.equalsIgnoreCase(SampleGattAttributes.SERVICE_GLUCOSE_MEASUREMENT)) {
 
                 // Loops through available Characteristics.
-                for (BluetoothGattCharacteristic gattCharacteristic : gattService.getCharacteristics()) {
+                for (final BluetoothGattCharacteristic gattCharacteristic : gattService.getCharacteristics()) {
                     Log.i("charuuid ", gattCharacteristic.getUuid().toString());
+                    Log.i("charProp ", gattCharacteristic.getProperties() + "");
                     if (gattCharacteristic.getUuid().toString().equalsIgnoreCase(SampleGattAttributes.CHAR_GLUCOSE_MEASUREMENT)) {
                         mSelectedCharacteristic = gattCharacteristic;
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                btn.setBackgroundColor(getResources().getColor(R.color.login));
-                                readDataFromChar(mSelectedCharacteristic);
+                                progressBar.setVisibility(View.VISIBLE);
+                                infoTv.setBackgroundColor(getResources().getColor(R.color.login));
+                                infoTv.setText(R.string.start_measurement);
+                                mBluetoothLeService.setCharacteristicNotification(gattCharacteristic, true, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
                             }
                         });
                         Log.i("charuuid ", "Found");
-                    } else if (gattCharacteristic.getUuid().toString().equalsIgnoreCase(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG_RACP)) {
-                        mRACPCharacteristic = gattCharacteristic;
                     }
                 }
             }
         }
     }
 
+
+    private void onReceiveBloodGlucoseMeterReading(BloodGlucoseMeterReading latestReading) {
+//        this.hasUnsavedMeasurement = true;
+        this.latestReading = latestReading;
+        if (latestReading.getUnit() == 1) {
+            this.glucoseValueInMmolPerL = latestReading.getGlucose();
+            this.glucoseValueInMgPerDl = BloodGlucoseStandard.mmolPerLToMgPerDL(latestReading.getGlucose());
+//            this.cholesterolValueInMmolPerL = latestReading.getCholesterol();
+//            this.cholesterolValueInMgPerDl = BloodCholesterolStandard.mmolPerLToMgPerDL(latestReading.getCholesterol());
+        } else {
+            this.glucoseValueInMmolPerL = BloodGlucoseStandard.mgPerDLToMmolPerL(latestReading.getGlucose());
+            this.glucoseValueInMgPerDl = latestReading.getGlucose();
+            updateUiData();
+//            this.cholesterolValueInMmolPerL = BloodCholesterolStandard.mgPerDLToMmolPerL(latestReading.getCholesterol());
+//            this.cholesterolValueInMgPerDl = latestReading.getCholesterol();
+        }
+//        if (MathUtils.compareFloat(latestReading.getGlucose(), 0.0f) > 0) {
+//            this.currentStage = Stage.GLUCOSE_WAITING_FOR_PROFILE_SELECTION;
+//            refreshViewOnReceivedGlucoseData();
+//        } else if (MathUtils.compareFloat(latestReading.getCholesterol(), 0.0f) > 0) {
+//            this.currentStage = Stage.CHOLESTEROL_COMPLETED;
+//            refreshViewOnReceivedCholesterolData();
+//        } else {
+//            this.currentStage = Stage.WAITING_FOR_READING;
+//            refreshViewOnReceivedBadData();
+//        }
+//        refreshViewOnChangedStage();
+//        this.measurementStatusView.setText(R.string.blood_pressure_meter_measurement_interpretation_evaluated);
+//        refreshBasicMeasurementScrollView();
+    }
+
+    private void updateUiData() {
+        Calendar cal = Calendar.getInstance();
+        findViewById(R.id.measurement_layout).setVisibility(View.VISIBLE);
+        gluDateTv.setText(sdf.format(cal.getTime()));
+        gluTimeTv.setText(stf.format(cal.getTime()));
+        gluDataMglTv.setText(glucoseValueInMgPerDl + "mg/dL");
+        gluDataMoleTv.setText(String.format("%.2f", glucoseValueInMmolPerL) + "mmol/L");
+        progressBar.setVisibility(View.GONE);
+        btnSave.setVisibility(View.VISIBLE);
+        infoTv.setVisibility(View.GONE);
+    }
+
+
     private void readDataFromChar(final BluetoothGattCharacteristic characteristic) {
         if (characteristic == null)
             return;
 
         final int charaProp = characteristic.getProperties();
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
-            // If there is an active notification on a characteristic, clear
-            // it first so it doesn't update the data field on the user interface.
-            if (mNotifyCharacteristic != null) {
-                mBluetoothLeService.setCharacteristicNotification(mNotifyCharacteristic, false);
-                mNotifyCharacteristic = null;
-            }
-            mBluetoothLeService.readCharacteristic(characteristic);
-        }
+//        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
+//            // If there is an active notification on a characteristic, clear
+//            // it first so it doesn't update the data field on the user interface.
+//            if (mNotifyCharacteristic != null) {
+//                mBluetoothLeService.setCharacteristicNotification(mNotifyCharacteristic, false);
+//                mNotifyCharacteristic = null;
+//            }
+//            mBluetoothLeService.readCharacteristic(characteristic);
+//        }
         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
             mNotifyCharacteristic = characteristic;
             mBluetoothLeService.setCharacteristicNotification(characteristic, true);
@@ -251,7 +315,7 @@ public class GlucoseMeasurement extends AppCompatActivity {
             if (typeAndLocationPresent) {
                 record.setGlucoseConcentration(characteristic.getFloatValue(BluetoothGattCharacteristic.FORMAT_SFLOAT, offset));
                 //  setting data to display glucose concentration
-                tempRecievedData.setText("" + record.getGlucoseConcentration());
+//                tempRecievedData.setText("" + record.getGlucoseConcentration());
                 record.setConcentrationUnit(concentrationUnit);
                 final int typeAndLocation = characteristic.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 2);
                 record.setType((typeAndLocation & 0xF0) >> 4); // TODO this way or around?
@@ -269,17 +333,9 @@ public class GlucoseMeasurement extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_temperature_measurement);
-        btn = (Button) findViewById(R.id.button_measurement);
-        tempRecievedData = (TextView) findViewById(R.id.temp_data);
+        setContentView(R.layout.activity_glu_col_measurement);
+        initUi();
         mHandler = new Handler();
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                readDataFromChar(mSelectedCharacteristic);
-            }
-        });
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
@@ -299,6 +355,22 @@ public class GlucoseMeasurement extends AppCompatActivity {
             finish();
             return;
         }
+    }
+
+    private void initUi() {
+        infoTv = (TextView) findViewById(R.id.info_tv);
+        infoTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mBluetoothLeService.connect(mDeviceAddress);
+            }
+        });
+        btnSave = (Button) findViewById(R.id.saveGluBtn);
+        gluDataMglTv = (TextView) findViewById(R.id.glu_mgdl);
+        gluDataMoleTv = (TextView) findViewById(R.id.glu_mmol);
+        gluDateTv = (TextView) findViewById(R.id.glu_date);
+        gluTimeTv = (TextView) findViewById(R.id.glu_time);
+        progressBar = (ProgressBar) findViewById(R.id.progress_glu);
     }
 
     @Override

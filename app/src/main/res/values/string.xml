@@ -79,6 +79,7 @@
     <string name="label_state">State:</string>
     <string name="no_data">No data</string>
     <string name="connected">Connected</string>
+    <string name="connecting">Connecting..</string>
     <string name="disconnected">Disconnected</string>
     <string name="title_devices">BLE Device Scan</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
@@ -97,7 +98,8 @@
     <!--fb integration-->
     <string name="facebook_app_id">1435140109864971</string>
     <string name="fb_login_protocol_scheme">fb1435140109864971</string>
-
+    <string name="beforeMeal"> Before Meal</string>
+    <string name="afterMeal"> After Meal</string>
 
 
 </resources>

@@ -12,14 +12,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * Created by Vampire on 2017-05-25.
  */
 
-public class RoundedImageView extends ImageView
+public class RoundedImageView extends AppCompatImageView
 {
 
     public RoundedImageView(Context context)
@@ -35,33 +35,6 @@ public class RoundedImageView extends ImageView
     public RoundedImageView(Context context, AttributeSet attrs, int defStyle)
     {
         super(context, attrs, defStyle);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas)
-    {
-
-        Drawable drawable = getDrawable();
-
-        if (drawable == null)
-        {
-            return;
-        }
-
-        if (getWidth() == 0 || getHeight() == 0)
-        {
-            return;
-        }
-        Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
-
-        int w = getWidth();
-        @SuppressWarnings("unused")
-        int h = getHeight();
-
-        Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
-        canvas.drawBitmap(roundBitmap, 0, 0, null);
-
     }
 
     public static Bitmap getCroppedBitmap(Bitmap bmp, int radius)
@@ -99,6 +72,35 @@ public class RoundedImageView extends ImageView
         canvas.drawBitmap(sbmp, rect, rect, paint);
 
         return output;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+
+        Drawable drawable = getDrawable();
+
+        if (drawable == null) {
+            return;
+        }
+
+        if (getWidth() == 0 || getHeight() == 0) {
+            return;
+        }
+        Bitmap b;
+        try {
+            b = ((BitmapDrawable) drawable).getBitmap();
+        } catch (Exception e) {
+            return;
+        }
+        Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+
+        int w = getWidth();
+        @SuppressWarnings("unused")
+        int h = getHeight();
+
+        Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
+        canvas.drawBitmap(roundBitmap, 0, 0, null);
+
     }
 
 }

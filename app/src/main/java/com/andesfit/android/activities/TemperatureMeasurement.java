@@ -36,8 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class TemperatureMeasurement extends AppCompatActivity
-{
+public class TemperatureMeasurement extends AppCompatActivity {
 
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     //    private DeviceScanActivity.LeDeviceListAdapter mLeDeviceListAdapter;
@@ -60,31 +59,22 @@ public class TemperatureMeasurement extends AppCompatActivity
     // ACTION_GATT_DISCONNECTED: disconnected from a GATT server.
     // ACTION_GATT_SERVICES_DISCOVERED: discovered GATT services.
     // ACTION_DATA_AVAILABLE: received data from the device.  This can be a result of read or notification operations.
-    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver()
-    {
+    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent)
-        {
+        public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action))
-            {
+            if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 mConnected = true;
                 updateConnectionState(R.string.connected);
                 invalidateOptionsMenu();
-            }
-            else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action))
-            {
+            } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
                 mConnected = false;
                 updateConnectionState(R.string.disconnected);
                 invalidateOptionsMenu();
-            }
-            else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action))
-            {
+            } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Show all the supported services and characteristics on the user interface.
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
-            }
-            else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action))
-            {
+            } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
             }
         }
@@ -92,15 +82,12 @@ public class TemperatureMeasurement extends AppCompatActivity
 
     private String TAG = getClass().getSimpleName();
 
-    private final ServiceConnection mServiceConnection = new ServiceConnection()
-    {
+    private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
-        public void onServiceConnected(ComponentName componentName, IBinder service)
-        {
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
             mBluetoothLeService = ((BluetoothLeService.LocalBinder) service).getService();
-            if (!mBluetoothLeService.initialize())
-            {
+            if (!mBluetoothLeService.initialize()) {
                 Log.e(TAG, "Unable to initialize Bluetooth");
                 finish();
             }
@@ -109,33 +96,25 @@ public class TemperatureMeasurement extends AppCompatActivity
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName componentName)
-        {
+        public void onServiceDisconnected(ComponentName componentName) {
             mBluetoothLeService = null;
         }
     };
     // Device scan callback.
-    private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback()
-    {
+    private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
 
         @Override
-        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord)
-        {
-            runOnUiThread(new Runnable()
-            {
+        public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+            runOnUiThread(new Runnable() {
                 @Override
-                public void run()
-                {
-                    if ((!TextUtils.isEmpty(device.getName()) && device.getName().equalsIgnoreCase("Tem BH")))
-                    {
+                public void run() {
+                    if ((!TextUtils.isEmpty(device.getName()) && device.getName().equalsIgnoreCase("Tem BH"))) {
 
-                        if (mScanning)
-                        {
+                        if (mScanning) {
                             mBluetoothAdapter.stopLeScan(mLeScanCallback);
                             mScanning = false;
                         }
-                        if (mDevice == null)
-                        {
+                        if (mDevice == null) {
                             mDevice = device;
                             mDeviceAddress = device.getAddress();
                             connectBTServices();
@@ -146,8 +125,7 @@ public class TemperatureMeasurement extends AppCompatActivity
         }
     };
 
-    private static IntentFilter makeGattUpdateIntentFilter()
-    {
+    private static IntentFilter makeGattUpdateIntentFilter() {
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_CONNECTED);
         intentFilter.addAction(BluetoothLeService.ACTION_GATT_DISCONNECTED);
@@ -156,52 +134,45 @@ public class TemperatureMeasurement extends AppCompatActivity
         return intentFilter;
     }
 
-    private void displayData(String stringExtra)
-    {
-        historyTemp.addView(tempRecievedData);
+    private void displayData(String stringExtra) {
+        TextView textView = new TextView(this);
+        textView.setText(tempRecievedData.getText());
+        historyTemp.addView(textView);
         String[] strings = stringExtra.split(" ");
         String t = strings[2].trim() + strings[1].trim();
         int data = Integer.parseInt(t.trim(), 16);
         float data1 = data / 100.0f;
         Calendar cal = Calendar.getInstance();
         System.out.println(sdf.format(cal.getTime()));
-        tempRecievedData.setText(data1 + " degree C" + " " + sdf.format(cal.getTime()));
+        tempRecievedData.setText(data1 + " C" + " " + sdf.format(cal.getTime()));
     }
 
-    private void updateConnectionState(int connected)
-    {
+    private void updateConnectionState(int connected) {
+        btn.setBackgroundColor(getResources().getColor(mConnected ? R.color.login : R.color.colorLightGray));
     }
 
-    private void connectBTServices()
-    {
+    private void connectBTServices() {
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
 
-    private void displayGattServices(List<BluetoothGattService> gattServices)
-    {
+    private void displayGattServices(List<BluetoothGattService> gattServices) {
         if (gattServices == null) return;
         String uuid = null;
         // Loops through available GATT Services.
-        for (BluetoothGattService gattService : gattServices)
-        {
+        for (BluetoothGattService gattService : gattServices) {
             uuid = gattService.getUuid().toString();
             Log.i("ServiceId", uuid);
-            if (uuid.equalsIgnoreCase(SampleGattAttributes.SERVICE_TEMPERATURE_MEASUREMENT))
-            {
+            if (uuid.equalsIgnoreCase(SampleGattAttributes.SERVICE_TEMPERATURE_MEASUREMENT)) {
 
                 // Loops through available Characteristics.
-                for (BluetoothGattCharacteristic gattCharacteristic : gattService.getCharacteristics())
-                {
+                for (BluetoothGattCharacteristic gattCharacteristic : gattService.getCharacteristics()) {
                     Log.i("charuuid ", gattCharacteristic.getUuid().toString());
-                    if (gattCharacteristic.getUuid().toString().equalsIgnoreCase(SampleGattAttributes.CHAR_TEMPERATURE_MEASUREMENT))
-                    {
+                    if (gattCharacteristic.getUuid().toString().equalsIgnoreCase(SampleGattAttributes.CHAR_TEMPERATURE_MEASUREMENT)) {
                         mSelectedCharacteristic = gattCharacteristic;
-                        runOnUiThread(new Runnable()
-                        {
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void run()
-                            {
+                            public void run() {
                                 btn.setBackgroundColor(getResources().getColor(R.color.login));
                                 readDataFromChar(mSelectedCharacteristic);
                             }
@@ -213,51 +184,43 @@ public class TemperatureMeasurement extends AppCompatActivity
         }
     }
 
-    private void readDataFromChar(final BluetoothGattCharacteristic characteristic)
-    {
+    private void readDataFromChar(final BluetoothGattCharacteristic characteristic) {
         if (characteristic == null)
             return;
         final int charaProp = characteristic.getProperties();
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0)
-        {
+        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
             // If there is an active notification on a characteristic, clear
             // it first so it doesn't update the data field on the user interface.
-            if (mNotifyCharacteristic != null)
-            {
+            if (mNotifyCharacteristic != null) {
                 mBluetoothLeService.setCharacteristicNotification(mNotifyCharacteristic, false);
                 mNotifyCharacteristic = null;
             }
             mBluetoothLeService.readCharacteristic(characteristic);
         }
-        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0)
-        {
+        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
             mNotifyCharacteristic = characteristic;
             mBluetoothLeService.setCharacteristicNotification(characteristic, true);
         }
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature_measurement);
         btn = (Button) findViewById(R.id.button_measurement);
         historyTemp = (LinearLayout) findViewById(R.id.historyTemp);
         tempRecievedData = (TextView) findViewById(R.id.temp_data);
         mHandler = new Handler();
-        btn.setOnClickListener(new View.OnClickListener()
-        {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 readDataFromChar(mSelectedCharacteristic);
             }
         });
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
-        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE))
-        {
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -268,8 +231,7 @@ public class TemperatureMeasurement extends AppCompatActivity
         mBluetoothAdapter = bluetoothManager.getAdapter();
 
         // Checks if Bluetooth is supported on the device.
-        if (mBluetoothAdapter == null)
-        {
+        if (mBluetoothAdapter == null) {
             Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -277,14 +239,12 @@ public class TemperatureMeasurement extends AppCompatActivity
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
 
         // Ensures Bluetooth is enabled on the device.  If Bluetooth is not currently enabled,
         // fire an intent to display a dialog asking the user to grant permission to enable it.
-        if (!mBluetoothAdapter.isEnabled())
-        {
+        if (!mBluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, ApplicationContants.REQUEST_ENABLE_BT);
         }
@@ -292,58 +252,46 @@ public class TemperatureMeasurement extends AppCompatActivity
         scanLeDevice(true);
 
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
-        if (mBluetoothLeService != null)
-        {
+        if (mBluetoothLeService != null) {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
         }
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         scanLeDevice(false);
         unregisterReceiver(mGattUpdateReceiver);
     }
 
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
-        try
-        {
+        try {
             unbindService(mServiceConnection);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
         mBluetoothLeService = null;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // User chose not to enable Bluetooth.
-        if (requestCode == ApplicationContants.REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED)
-        {
+        if (requestCode == ApplicationContants.REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
             finish();
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void scanLeDevice(final boolean enable)
-    {
-        if (enable)
-        {
+    private void scanLeDevice(final boolean enable) {
+        if (enable) {
             // Stops scanning after a pre-defined scan period.
-            mHandler.postDelayed(new Runnable()
-            {
+            mHandler.postDelayed(new Runnable() {
                 @Override
-                public void run()
-                {
+                public void run() {
                     mScanning = false;
                     mBluetoothAdapter.stopLeScan(mLeScanCallback);
                     invalidateOptionsMenu();
@@ -352,9 +300,7 @@ public class TemperatureMeasurement extends AppCompatActivity
 
             mScanning = true;
             mBluetoothAdapter.startLeScan(mLeScanCallback);
-        }
-        else
-        {
+        } else {
             mScanning = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
         }

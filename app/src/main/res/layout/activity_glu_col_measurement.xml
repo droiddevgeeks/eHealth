@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".6"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="30dp">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:buttonTint="@color/login"
+                android:text="@string/beforeMeal"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:buttonTint="@color/login"
+                android:text="@string/afterMeal"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="@color/cardview_dark_background" />
+
+        <ProgressBar
+            android:id="@+id/progress_glu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:paddingTop="30dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/measurement_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <include layout="@layout/row_glu_col_current"></include>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveGluBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="Save"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:background="@color/account_btn"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/connecting"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+
+</LinearLayout>
